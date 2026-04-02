@@ -1,0 +1,194 @@
+/* ========================================
+   Contact Section - Premium Editorial
+   ======================================== */
+
+.contact {
+  position: relative;
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  padding: 100px 0;
+  overflow: hidden;
+  background: var(--color-bg); /* Fallback */
+}
+
+/* Background Map Area */
+.contact-map-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Let clicks pass through if map is purely ambient, or auto if interactive */
+  z-index: 1;
+}
+
+.contact-map-bg iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  /* Cinematic dark map filter */
+  filter: grayscale(100%) invert(95%) contrast(80%) opacity(0.5);
+  transition: filter var(--transition-base);
+}
+
+[data-theme="light"] .contact-map-bg iframe {
+  /* Cinematic light map filter */
+  filter: grayscale(100%) contrast(90%) opacity(0.3);
+}
+
+.map-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, var(--color-bg) 95%);
+  z-index: 2;
+}
+
+/* Content Container */
+.contact .container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-start; /* Or center based on preference, left alignment is very elegant */
+}
+
+/* Floating Panel */
+.contact-floating-panel {
+  background: rgba(10, 10, 12, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+  padding: 60px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateZ(0); /* Hardware accel for blur */
+}
+
+[data-theme="light"] .contact-floating-panel {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(15, 23, 42, 0.05);
+  box-shadow: 0 32px 64px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* Header inside panel */
+.contact-header {
+  margin-bottom: 48px;
+}
+
+.panel-title {
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  color: var(--color-white);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.panel-title span {
+  color: var(--color-red);
+}
+
+[data-theme="light"] .panel-title {
+  color: var(--color-dark-gray);
+}
+
+.panel-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-gray-text);
+  line-height: 1.6;
+}
+
+/* Contact Details */
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  group: true; /* Concept for hover scoping, applied via regular CSS below */
+}
+
+/* Icon - No more strict boxes, just the icon */
+.contact-item-icon {
+  font-size: 1.8rem;
+  color: var(--color-white-muted);
+  flex-shrink: 0;
+  padding-top: 4px;
+  transition: all var(--transition-base);
+}
+
+[data-theme="light"] .contact-item-icon {
+  color: rgba(15, 23, 42, 0.4);
+}
+
+/* Text */
+.contact-item-text h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-gray-text);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+
+.contact-item-text p {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.5;
+  transition: all var(--transition-base);
+}
+
+[data-theme="light"] .contact-item-text p {
+  color: var(--color-dark-gray);
+}
+
+/* Elegant Hover Effects */
+.contact-item:hover .contact-item-icon {
+  color: var(--color-red);
+  transform: translateX(4px);
+  filter: drop-shadow(0 0 12px rgba(220, 38, 38, 0.4));
+}
+
+[data-theme="light"] .contact-item:hover .contact-item-icon {
+  filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.2));
+}
+
+.contact-item:hover .contact-item-text p {
+  color: var(--color-red);
+}
+
+
+@media (max-width: 768px) {
+  .contact {
+    padding: 60px 0;
+    min-height: auto;
+  }
+  
+  .contact-map-bg {
+    position: relative;
+    height: 300px;
+    margin-bottom: -40px; /* Pull panel up over map */
+    z-index: 1;
+  }
+  
+  .contact-floating-panel {
+    padding: 40px 30px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+  }
+
+  .panel-title {
+    font-size: 2.2rem;
+  }
+
+  .contact-item-text p {
+    font-size: 1.1rem;
+  }
+}

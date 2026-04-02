@@ -1,0 +1,119 @@
+/* ========================================
+   Why Attend Section
+   ======================================== */
+
+.why-attend {
+  padding: var(--section-padding);
+  background: transparent;
+  position: relative;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.why-card {
+  padding: 40px 32px;
+  text-align: left; /* Bento boxes usually look better left-aligned */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Bento Grid Sizing */
+.why-card:nth-child(1) {
+  grid-column: span 2;
+}
+.why-card:nth-child(2) {
+  grid-column: span 1;
+}
+.why-card:nth-child(3) {
+  grid-column: span 1;
+}
+.why-card:nth-child(4) {
+  grid-column: span 2;
+}
+
+.why-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-red);
+  transform: scaleX(0);
+  transition: transform var(--transition-base);
+  z-index: 1;
+}
+
+.why-card:hover::before {
+  transform: scaleX(1);
+}
+
+.why-icon {
+  font-size: 3rem; /* Larger icon, no background box */
+  color: var(--color-white);
+  margin-bottom: 24px;
+  transition: all var(--transition-base);
+  display: inline-flex;
+}
+
+[data-theme="light"] .why-icon {
+  color: var(--color-white); 
+}
+
+.why-card:hover .why-icon {
+  color: var(--color-red);
+  transform: translateY(-4px) scale(1.05);
+  filter: drop-shadow(0 8px 16px rgba(220, 38, 38, 0.4));
+}
+
+[data-theme="light"] .why-card:hover .why-icon {
+  color: var(--color-red);
+  filter: drop-shadow(0 4px 12px rgba(220, 38, 38, 0.2));
+}
+
+.why-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.why-card p {
+  color: var(--color-gray-text);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 1024px) {
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .why-card:nth-child(1),
+  .why-card:nth-child(2),
+  .why-card:nth-child(3),
+  .why-card:nth-child(4) {
+    grid-column: span 1; /* Reset spans on mobile/tablet */
+  }
+}
+
+@media (max-width: 640px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+  .why-card {
+    text-align: left;
+  }
+}
+
+@media (max-width: 576px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+}

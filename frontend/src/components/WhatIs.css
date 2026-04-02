@@ -1,0 +1,71 @@
+/* ========================================
+   WhatIs Section — "Doğu Anadolu Zirvesi Nedir?"
+   ======================================== */
+
+.whatis {
+  padding: var(--section-padding);
+  background: transparent;
+  position: relative;
+}
+
+
+.whatis-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.whatis-card {
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.whatis-card-icon {
+  font-size: 3rem;
+  color: var(--color-white);
+  margin-bottom: 24px;
+  display: inline-flex;
+  transition: all var(--transition-base);
+}
+
+[data-theme="light"] .whatis-card-icon {
+  color: var(--color-white);
+}
+
+.whatis-card:hover .whatis-card-icon {
+  color: var(--color-red);
+  transform: translateY(-4px) scale(1.05);
+  filter: drop-shadow(0 8px 16px rgba(220, 38, 38, 0.4));
+}
+
+[data-theme="light"] .whatis-card:hover .whatis-card-icon {
+  color: var(--color-red);
+  filter: drop-shadow(0 4px 12px rgba(220, 38, 38, 0.2));
+}
+
+.whatis-card p {
+  color: var(--color-white-muted);
+  font-size: 1rem;
+  /* Slightly larger, better line height */
+  line-height: 1.8;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 1024px) {
+  .whatis-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .whatis-cards {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

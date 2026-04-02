@@ -1,0 +1,196 @@
+/* ========================================
+   About Section
+   ======================================== */
+
+.about {
+  padding: var(--section-padding);
+  background: transparent;
+  position: relative;
+}
+
+
+/* ---- Mission & Vision Cards ---- */
+.about-mv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.about-mv-card {
+  padding: 20px 0;
+  text-align: left;
+  background: transparent;
+  border: none;
+}
+.about-mv-card h3 {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+}
+.about-mv-card p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-white-muted);
+}
+
+.about-mv-icon {
+  font-size: 3.5rem;
+  color: var(--color-white);
+  margin-bottom: 24px;
+  transition: all var(--transition-base);
+  display: inline-flex;
+}
+
+[data-theme="light"] .about-mv-icon {
+  color: var(--color-white); /* Will map to the dark color variable in light theme */
+}
+
+.about-mv-card:hover .about-mv-icon {
+  color: var(--color-red);
+  transform: translateY(-4px) scale(1.05);
+  filter: drop-shadow(0 8px 16px rgba(220, 38, 38, 0.4));
+}
+
+[data-theme="light"] .about-mv-card:hover .about-mv-icon {
+  color: var(--color-red); /* Keep red accent on hover */
+  filter: drop-shadow(0 4px 12px rgba(220, 38, 38, 0.2));
+}
+
+.about-mv-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.about-mv-card p {
+  color: var(--color-gray-text);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* ---- Info Cards ---- */
+.about-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.about-info-card {
+  padding: 20px 0; /* Remove side padding for boxless look */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transition: all var(--transition-base);
+}
+
+[data-theme="light"] .about-info-card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* No bounding box hover effect, just typography/icon shifts */
+.about-info-card:hover {
+  transform: none;
+  background: transparent;
+  border-color: transparent;
+}
+
+[data-theme="light"] .about-info-card:hover {
+  background: transparent;
+  border-color: transparent;
+}
+
+/* Icon Styling */
+.info-icon-wrapper {
+  margin-bottom: 20px;
+  display: inline-block;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.info-icon {
+  color: var(--color-red);
+  font-size: 2.5rem;
+  transition: all 0.4s ease;
+}
+
+.about-info-card:hover .info-icon-wrapper {
+  transform: translateY(-4px) scale(1.05);
+}
+
+.about-info-card:hover .info-icon {
+  filter: drop-shadow(0 4px 12px rgba(220, 38, 38, 0.4));
+}
+
+[data-theme="light"] .about-info-card:hover .info-icon {
+  filter: drop-shadow(0 4px 8px rgba(220, 38, 38, 0.2));
+}
+
+/* Typography */
+.about-info-card h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  transition: color 0.3s ease;
+}
+
+[data-theme="light"] .about-info-card h4 {
+  color: var(--color-dark-gray);
+}
+
+.about-info-card p {
+  color: var(--color-gray-text);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  opacity: 0.8;
+}
+
+/* ---- Stats ---- */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 28px 16px;
+}
+
+.stat-number {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 300;
+  letter-spacing: -0.05em;
+  color: var(--color-white);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+[data-theme="light"] .stat-number {
+  color: var(--color-dark-gray);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--color-gray-text);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 768px) {
+  .about-mv-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-info-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

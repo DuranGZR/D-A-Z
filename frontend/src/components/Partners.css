@@ -1,0 +1,70 @@
+/* ========================================
+   Partners Section — Infinite Marquee
+   ======================================== */
+
+.partners {
+  padding: var(--section-padding);
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---- Marquee Container ---- */
+.marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* Smoother fade out at the edges */
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: marquee-scroll 25s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ---- Partner Items ---- */
+.partner-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px; /* Spacing between words instead of a box */
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.partner-img {
+  height: 80px; /* Slightly larger base height */
+  width: auto;
+  object-fit: contain;
+  opacity: 0.85; /* Return color but soften slightly to blend with dark mode */
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme="light"] .partner-img {
+  opacity: 0.9; /* Slight difference for light mode */
+}
+
+.partner-item:hover .partner-img {
+  opacity: 1;
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.1)); /* Use correct filter syntax */
+}
+
+[data-theme="light"] .partner-item:hover .partner-img {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+}
