@@ -1,6 +1,6 @@
 # Doğu Anadolu Zirvesi Web Sitesi
 
-Doğu Anadolu Zirvesi web sitesi, HSD İnönü topluluğu tarafından düzenlenen teknoloji ve girişimcilik odaklı etkinlik için hazırlanmış modern, responsive ve tanıtım odaklı bir web arayüzüdür.
+Doğu Anadolu Zirvesi web sitesi, HSD topluluğu tarafından düzenlenen teknoloji ve girişimcilik odaklı etkinlik için hazırlanmış modern, responsive ve tanıtım odaklı bir web arayüzüdür.
 
 Site; etkinliğin amacını, katılımcılara sunduğu kazanımları, konuşmacıları, paydaşları, sponsorları ve iletişim bilgilerini tek sayfalık akıcı bir deneyim içinde sunar.
 
