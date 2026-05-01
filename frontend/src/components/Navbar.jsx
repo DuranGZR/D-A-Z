@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
-import { FiSun, FiMoon } from 'react-icons/fi';
+import { useEffect, useState } from 'react';
+import { FiMoon, FiSun } from 'react-icons/fi';
 import { useTheme } from '../contexts/ThemeContext';
 import './Navbar.css';
 
 const navLinks = [
-  { href: '#anasayfa', label: 'Ana Sayfa' },
-  { href: '#hakkimizda', label: 'Hakkımızda' },
+  { href: '#nedir', label: 'Nedir?' },
   { href: '#neden', label: 'Neden Katılmalı' },
+  { href: '#hakkimizda', label: 'Hakkımızda' },
   { href: '#konusmacilar', label: 'Konuşmacılar' },
   { href: '#paydaslar', label: 'Paydaşlar' },
+  { href: '#sponsorlar', label: 'Sponsorlar' },
   { href: '#iletisim', label: 'İletişim' },
 ];
 
@@ -29,8 +30,7 @@ export default function Navbar() {
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`} id="anasayfa">
       <div className="container">
         <div className="navbar-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <span className="logo-dot" />
-          <span>DOĞU ANADOLU <span className="logo-accent">ZİRVESİ</span></span>
+          <img src="/HSD-Beyaz-Logo.png" alt="Huawei Student Developers Logo" className="navbar-logo-img" />
         </div>
 
         <button
@@ -42,21 +42,29 @@ export default function Navbar() {
         </button>
 
         <div className={`navbar-links${menuOpen ? ' open' : ''}`}>
-          {navLinks.map(link => (
+          {navLinks.map((link) => (
             <a key={link.href} href={link.href} onClick={handleLinkClick}>
               {link.label}
             </a>
           ))}
-          
-          <button 
-            className="theme-toggle-btn" 
+
+          <button
+            className="theme-toggle-btn"
             onClick={toggleTheme}
-            aria-label="Toggle Theme"
+            aria-label="Tema değiştir"
           >
             {theme === 'dark' ? <FiSun /> : <FiMoon />}
           </button>
         </div>
       </div>
+      {menuOpen && (
+        <button
+          type="button"
+          className="navbar-menu-backdrop"
+          aria-label="Menüyü kapat"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
       <div className="navbar-glass-border" />
     </nav>
   );

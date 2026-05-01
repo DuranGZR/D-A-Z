@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FiArrowRight, FiCalendar } from 'react-icons/fi';
 import './Hero.css';
 
-const EVENT_DATE = new Date('2025-10-15T09:00:00');
+const EVENT_DATE = new Date('2026-05-11T10:00:00');
 
 function getTimeLeft() {
   const now = new Date();
@@ -29,20 +29,17 @@ export default function Hero() {
   return (
     <section className="hero" id="anasayfa">
       <div className="hero-content">
-        <div className="hero-badge">
-          <span className="badge-dot" />
-          HSD İnönü Topluluğu
-        </div>
+
 
         <h1 className="hero-title">
-          <span className="hero-title-word">DOĞU </span>
+          <span className="hero-title-word">DOĞU&nbsp;</span>
           <span className="hero-title-word">ANADOLU</span>
           <span className="hero-title-accent">ZİRVESİ</span>
         </h1>
 
         <p className="hero-date">
           <FiCalendar style={{ verticalAlign: 'middle', marginRight: 8 }} />
-          <strong>15 Ekim 2025</strong> &bull; İnönü Üniversitesi, Malatya
+          <strong>11 Mayıs 2026</strong> &bull; Kongre ve Kültür Merkezi, Malatya
         </p>
 
         <div className="countdown">

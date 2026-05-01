@@ -8,11 +8,73 @@
   position: relative;
 }
 
+/* ---- Mobile Mission/Vision Switcher ---- */
+.about-mv-mobile {
+  display: none;
+}
 
-/* ---- Mission & Vision Cards ---- */
+.about-mv-mobile-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 6px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 14px;
+}
+
+[data-theme='light'] .about-mv-mobile-tabs {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+.about-mv-mobile-tab {
+  min-height: 44px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--color-gray-text);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.about-mv-mobile-tab.active {
+  background: rgba(220, 38, 38, 0.16);
+  color: var(--color-white);
+}
+
+.about-mv-mobile-panel {
+  padding: 22px 18px;
+}
+
+.about-mv-mobile-icon {
+  font-size: 2rem;
+  color: var(--color-red);
+  display: inline-flex;
+  margin-bottom: 12px;
+}
+
+.about-mv-mobile-panel h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.about-mv-mobile-panel p {
+  color: var(--color-gray-text);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+/* ---- Mission & Vision (Desktop/Tablet) ---- */
 .about-mv-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
   margin-bottom: 60px;
 }
@@ -23,17 +85,6 @@
   background: transparent;
   border: none;
 }
-.about-mv-card h3 {
-  font-size: 2rem;
-  font-weight: 300;
-  letter-spacing: -0.04em;
-  margin-bottom: 24px;
-}
-.about-mv-card p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--color-white-muted);
-}
 
 .about-mv-icon {
   font-size: 3.5rem;
@@ -43,8 +94,8 @@
   display: inline-flex;
 }
 
-[data-theme="light"] .about-mv-icon {
-  color: var(--color-white); /* Will map to the dark color variable in light theme */
+[data-theme='light'] .about-mv-icon {
+  color: var(--color-white);
 }
 
 .about-mv-card:hover .about-mv-icon {
@@ -53,8 +104,8 @@
   filter: drop-shadow(0 8px 16px rgba(220, 38, 38, 0.4));
 }
 
-[data-theme="light"] .about-mv-card:hover .about-mv-icon {
-  color: var(--color-red); /* Keep red accent on hover */
+[data-theme='light'] .about-mv-card:hover .about-mv-icon {
+  color: var(--color-red);
   filter: drop-shadow(0 4px 12px rgba(220, 38, 38, 0.2));
 }
 
@@ -73,38 +124,29 @@
 /* ---- Info Cards ---- */
 .about-info-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
   margin-bottom: 60px;
 }
 
 .about-info-card {
-  padding: 20px 0; /* Remove side padding for boxless look */
+  padding: 20px 0;
   background: transparent;
   border: none;
   box-shadow: none;
   transition: all var(--transition-base);
 }
 
-[data-theme="light"] .about-info-card {
+[data-theme='light'] .about-info-card {
   background: transparent;
   border: none;
   box-shadow: none;
 }
 
-/* No bounding box hover effect, just typography/icon shifts */
 .about-info-card:hover {
   transform: none;
-  background: transparent;
-  border-color: transparent;
 }
 
-[data-theme="light"] .about-info-card:hover {
-  background: transparent;
-  border-color: transparent;
-}
-
-/* Icon Styling */
 .info-icon-wrapper {
   margin-bottom: 20px;
   display: inline-block;
@@ -125,35 +167,33 @@
   filter: drop-shadow(0 4px 12px rgba(220, 38, 38, 0.4));
 }
 
-[data-theme="light"] .about-info-card:hover .info-icon {
+[data-theme='light'] .about-info-card:hover .info-icon {
   filter: drop-shadow(0 4px 8px rgba(220, 38, 38, 0.2));
 }
 
-/* Typography */
 .about-info-card h4 {
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 12px;
   letter-spacing: -0.02em;
   color: var(--color-white);
-  transition: color 0.3s ease;
 }
 
-[data-theme="light"] .about-info-card h4 {
-  color: var(--color-dark-gray);
+[data-theme='light'] .about-info-card h4 {
+  color: var(--color-white);
 }
 
 .about-info-card p {
   color: var(--color-gray-text);
   font-size: 0.95rem;
   line-height: 1.8;
-  opacity: 0.8;
+  opacity: 0.86;
 }
 
 /* ---- Stats ---- */
 .about-stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
 }
 
@@ -171,8 +211,8 @@
   margin-bottom: 12px;
 }
 
-[data-theme="light"] .stat-number {
-  color: var(--color-dark-gray);
+[data-theme='light'] .stat-number {
+  color: var(--color-white);
 }
 
 .stat-label {
@@ -183,14 +223,173 @@
   letter-spacing: 0.08em;
 }
 
-@media (max-width: 768px) {
-  .about-mv-grid {
-    grid-template-columns: 1fr;
-  }
+/* ---- Tablet ---- */
+@media (max-width: 1024px) {
+  .about-mv-grid,
   .about-info-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
   }
+
   .about-stats {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 768px) {
+  .about {
+    padding: 72px 0 64px;
+  }
+
+  .about .section-subtitle {
+    margin-bottom: 30px;
+  }
+
+  .about-mv-mobile {
+    display: block;
+    margin-bottom: 34px;
+  }
+
+  .about-mv-grid {
+    display: none;
+  }
+
+  .about-info-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .about-info-card {
+    padding: 18px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+  }
+
+  [data-theme='light'] .about-info-card {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(15, 23, 42, 0.08);
+  }
+
+  .about-info-card:nth-child(1) {
+    grid-column: 1 / span 6;
+  }
+
+  .about-info-card:nth-child(2) {
+    grid-column: 7 / span 6;
+  }
+
+  .about-info-card:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+
+  .info-icon-wrapper {
+    margin-bottom: 12px;
+  }
+
+  .info-icon {
+    font-size: 1.85rem;
+  }
+
+  .about-info-card h4 {
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+  }
+
+  .about-info-card p {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    padding-bottom: 0;
+  }
+
+  .stat-item {
+    min-width: 0;
+    padding: 14px 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+  }
+
+  [data-theme='light'] .stat-item {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(15, 23, 42, 0.08);
+  }
+
+  .stat-number {
+    font-size: clamp(1.5rem, 6.3vw, 1.95rem);
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 420px) {
+  .about {
+    padding: 64px 0 56px;
+  }
+
+  .about-mv-mobile-panel {
+    padding: 18px 14px;
+  }
+
+  .about-mv-mobile-icon {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .about-mv-mobile-panel h3 {
+    font-size: 1.12rem;
+  }
+
+  .about-mv-mobile-panel p {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .about-info-grid {
+    gap: 10px;
+  }
+
+  .about-info-card {
+    padding: 14px 12px;
+  }
+
+  .about-info-card h4 {
+    font-size: 1rem;
+  }
+
+  .about-info-card p {
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  .stat-item {
+    padding: 12px 6px;
+    border-radius: 12px;
+  }
+
+  .about-stats {
+    gap: 6px;
+  }
+
+  .stat-number {
+    font-size: clamp(1.35rem, 6vw, 1.7rem);
+  }
+
+  .stat-label {
+    font-size: 0.56rem;
+    letter-spacing: 0.02em;
   }
 }

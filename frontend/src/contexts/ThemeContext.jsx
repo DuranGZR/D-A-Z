@@ -9,14 +9,13 @@ export function ThemeProvider({ children }) {
     if (savedTheme) {
       return savedTheme;
     }
-    // Default to dark theme as requested by the user history
+    
     return 'dark';
   });
 
   useEffect(() => {
-    // Update local storage
+    
     localStorage.setItem('theme', theme);
-    // Update html data-theme attribute for CSS targeting
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 

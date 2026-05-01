@@ -8,7 +8,6 @@
   position: relative;
 }
 
-
 .whatis-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -23,6 +22,24 @@
   background: transparent;
   display: flex;
   flex-direction: column;
+}
+
+.whatis-card-header {
+  display: flex;
+  flex-direction: column;
+  cursor: default; 
+}
+
+.whatis-card-title {
+  display: none; 
+}
+
+.whatis-card-toggle {
+  display: none; 
+}
+
+.whatis-card-content {
+  display: block; 
 }
 
 .whatis-card-icon {
@@ -64,8 +81,96 @@
 }
 
 @media (max-width: 768px) {
+  .whatis {
+    padding: 60px 0;
+  }
+  .section-title {
+    font-size: 2rem;
+  }
+  .section-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+  }
   .whatis-cards {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .whatis-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .whatis-card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 24px;
+    cursor: pointer; 
+    background: transparent;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .whatis-card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0;
+    margin-right: 16px;
+    color: var(--color-red);
+  }
+  
+  .whatis-card-title {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-white);
+    flex-grow: 1;
+    margin: 0;
+  }
+  [data-theme="light"] .whatis-card-title {
+    color: var(--color-dark-gray);
+  }
+  
+  .whatis-card-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--color-gray-text);
+    transition: transform 0.3s ease;
+  }
+  .whatis-card.active .whatis-card-toggle {
+    transform: rotate(180deg);
+    color: var(--color-red);
+  }
+
+  /* --- Akordiyon İçerik (Açılıp Kapanan Alan) --- */
+  .whatis-card-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .whatis-card.active .whatis-card-content {
+    max-height: 1200px;
+  }
+  
+  .whatis-card-content-inner {
+    overflow: hidden;
+  }
+
+  .whatis-card-content p {
+    padding: 0 24px 24px 24px; 
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-white-muted);
+  }
+  [data-theme="light"] .whatis-card-content p {
+    color: var(--color-gray-text);
   }
 }

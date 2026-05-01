@@ -1,4 +1,9 @@
-import { PiInstagramLogoDuotone, PiTwitterLogoDuotone, PiLinkedinLogoDuotone, PiGithubLogoDuotone } from 'react-icons/pi';
+import {
+  PiGithubLogoDuotone,
+  PiInstagramLogoDuotone,
+  PiLinkedinLogoDuotone,
+  PiTwitterLogoDuotone,
+} from 'react-icons/pi';
 import './Footer.css';
 
 const quickLinks = [
@@ -13,18 +18,18 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="container">
-        
-        {/* The Mega Brand Watermark */}
         <div className="footer-mega-brand" aria-hidden="true">
-          DOĞU ANADOLU ZİRVESİ
+          <div className="footer-mega-brand-track">
+            <span>DOĞU ANADOLU ZİRVESİ</span>
+            <span>DOĞU ANADOLU ZİRVESİ</span>
+          </div>
         </div>
 
         <div className="footer-main">
-          {/* Brand Info & Socials */}
           <div className="footer-brand">
             <p className="footer-description">
-              Bölgenin teknoloji ve girişimcilik potansiyelini 
-              ortaya çıkarmayı hedefleyen lider dijital platform.
+              Bölgenin teknoloji ve girişimcilik potansiyelini ortaya çıkarmayı hedefleyen lider
+              dijital platform.
             </p>
             <div className="footer-social">
               <a href="#" aria-label="Instagram"><PiInstagramLogoDuotone /></a>
@@ -34,12 +39,11 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links Grid */}
           <div className="footer-links-wrapper">
             <div className="footer-links-col">
               <h4 className="footer-heading">Keşfet</h4>
               <div className="footer-links">
-                {quickLinks.slice(0, 3).map(link => (
+                {quickLinks.slice(0, 3).map((link) => (
                   <a key={link.href} href={link.href}>{link.label}</a>
                 ))}
               </div>
@@ -48,7 +52,7 @@ export default function Footer() {
             <div className="footer-links-col">
               <h4 className="footer-heading">Bağlantılar</h4>
               <div className="footer-links">
-                {quickLinks.slice(3).map(link => (
+                {quickLinks.slice(3).map((link) => (
                   <a key={link.href} href={link.href}>{link.label}</a>
                 ))}
               </div>
@@ -65,12 +69,11 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Footer Bottom */}
         <div className="footer-bottom">
           <span className="copyright">© 2025 DAZ. Tüm hakları saklıdır.</span>
           <div className="footer-dev">
             <span className="footer-dev-dot" />
-            <span>HSD İnönü Topluluğu by <strong>Vision</strong></span>
+            <span>HUAWEI STUDENT DEVELOPERS</span>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ const partners = [
 ];
 
 export default function Partners() {
-  // Repeat 4x to ensure seamless infinite loop without gaps
+  
   const track = [...partners, ...partners, ...partners, ...partners];
 
   return (
