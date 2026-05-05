@@ -32,8 +32,11 @@ export default function Hero() {
 
 
         <h1 className="hero-title">
-          <span className="hero-title-word">DOĞU&nbsp;</span>
-          <span className="hero-title-word">ANADOLU</span>
+          <span className="hero-title-line">
+            <span className="hero-title-word">TEKNOLOJİ</span>
+            <span className="hero-title-word">VE</span>
+            <span className="hero-title-word">YENİLİK</span>
+          </span>
           <span className="hero-title-accent">ZİRVESİ</span>
         </h1>
 

@@ -4,25 +4,32 @@ import './Speakers.css';
 
 const speakers = [
   {
-    name: 'Kübra Bilgiç',
-    title: 'Developer Relations Manager @ Huawei',
-    tags: ['Teknoloji', 'Geliştirici İlişkileri', 'Liderlik'],
-    bio: "Huawei'de Developer Relations Manager olarak görev yapan Kübra Bilgiç, teknoloji geliştirme süreçleri ve yazılım ekosistemleri üzerine bilgi ve deneyimlerini aktaracak.",
-    image: '/kg.png',
+    name: 'Deniz Yalçın',
+    title: 'Cloud Engineer @ Vodafone',
+    tags: ['Cloud', 'Vodafone', 'Teknoloji'],
+    bio: 'Vodafone tarafındaki cloud engineering deneyimleriyle bulut teknolojileri, modern altyapı ve kariyer yolculuğu üzerine içgörüler paylaşacak.',
+    image: '/konuşmacı1.jpeg',
+  },
+  {
+    name: 'Betül Gündüz Odabaşı',
+    title: 'Eğitim ve Organizasyonel Gelişim Şefi @ İstikbal Mobilya A.Ş / Profesyonel Koç',
+    tags: ['Eğitim', 'Organizasyonel Gelişim', 'Koçluk'],
+    bio: 'Eğitim, organizasyonel gelişim ve profesyonel koçluk alanlarındaki deneyimleriyle kişisel gelişim ve liderlik üzerine konuşacak.',
+    image: '/konuşmacı2.jpeg',
   },
   {
     name: 'Kübra Bilgiç',
     title: 'Developer Relations Manager @ Huawei',
-    tags: ['Teknoloji', 'Geliştirici İlişkileri', 'Liderlik'],
-    bio: "Huawei'de Developer Relations Manager olarak görev yapan Kübra Bilgiç, teknoloji geliştirme süreçleri ve yazılım ekosistemleri üzerine bilgi ve deneyimlerini aktaracak.",
-    image: '/kg.png',
+    tags: ['Developer Relations', 'Topluluk', 'Huawei'],
+    bio: "Huawei'de Developer Relations Manager olarak görev yapan Kübra Bilgiç, geliştirici ilişkileri ve topluluk yönetimi üzerine deneyimlerini aktaracak.",
+    image: '/konuşmacı3.jpeg',
   },
   {
-    name: 'Kübra Bilgiç',
-    title: 'Developer Relations Manager @ Huawei',
-    tags: ['Teknoloji', 'Geliştirici İlişkileri', 'Liderlik'],
-    bio: "Huawei'de Developer Relations Manager olarak görev yapan Kübra Bilgiç, teknoloji geliştirme süreçleri ve yazılım ekosistemleri üzerine bilgi ve deneyimlerini aktaracak.",
-    image: '/kg.png',
+    name: 'Tuncay Erol',
+    title: 'Eğitmen / Yazılım ve Yapay Zeka Öğretmeni',
+    tags: ['Yazılım', 'Yapay Zeka', 'Eğitim'],
+    bio: 'Yazılım ve yapay zeka eğitimi alanındaki deneyimleriyle teknoloji üretimi, öğrenme süreçleri ve gelecek yetkinlikleri üzerine paylaşım yapacak.',
+    image: '/konuşmacı4.jpeg',
   },
 ];
 
@@ -86,10 +93,15 @@ export default function Speakers() {
               aria-label={`${speaker.name} detay kartını aç`}
             >
               <div className="speaker-image-wrapper">
+                <div className="speaker-image-bg" />
+                <FiUser className="speaker-image-placeholder" />
                 {speaker.image ? (
                   <img
                     src={speaker.image}
                     alt={speaker.name}
+                    onError={(event) => {
+                      event.currentTarget.style.display = 'none';
+                    }}
                     style={{
                       width: '100%',
                       height: '100%',
@@ -98,12 +110,7 @@ export default function Speakers() {
                     }}
                     className="speaker-real-image"
                   />
-                ) : (
-                  <>
-                    <div className="speaker-image-bg" />
-                    <FiUser className="speaker-image-placeholder" />
-                  </>
-                )}
+                ) : null}
               </div>
 
               <div className="speaker-glass-panel">
@@ -150,18 +157,18 @@ export default function Speakers() {
 
             <div className="speaker-mobile-top">
               <div className="speaker-mobile-image">
+                <div className="speaker-image-bg" />
+                <FiUser className="speaker-image-placeholder" />
                 {speakers[activeMobileSpeaker].image ? (
                   <img
                     src={speakers[activeMobileSpeaker].image}
                     alt={speakers[activeMobileSpeaker].name}
+                    onError={(event) => {
+                      event.currentTarget.style.display = 'none';
+                    }}
                     className="speaker-mobile-real-image"
                   />
-                ) : (
-                  <>
-                    <div className="speaker-image-bg" />
-                    <FiUser className="speaker-image-placeholder" />
-                  </>
-                )}
+                ) : null}
               </div>
               <div className="speaker-mobile-head">
                 <h3 className="speaker-name">{speakers[activeMobileSpeaker].name}</h3>

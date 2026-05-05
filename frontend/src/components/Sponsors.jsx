@@ -5,27 +5,30 @@ const tiers = [
     label: 'Ana Sponsor',
     tier: 'gold',
     items: [
-      { name: 'Ana Sponsor 1', image: '/int.png' },
-      { name: 'Ana Sponsor 2', image: '/int.png' }
+      { name: 'Teknokent', image: '/teknokent.jpeg' },
+      { name: 'Matris', image: '/matris.png' },
+      { name: 'Matris Koç', image: '/matriskoç.png' }
     ],
   },
   {
     label: 'Gümüş Sponsor',
     tier: 'silver',
     items: [
-      { name: 'Sponsor 1', image: '/int.png' },
-      { name: 'Sponsor 2', image: '/int.png' },
-      { name: 'Sponsor 3', image: '/int.png' }
+      { name: 'English Time', image: '/int.png' }
     ],
   },
   {
     label: 'Bronz Sponsor',
     tier: 'bronze',
     items: [
-      { name: 'Sponsor 4', image: '/int.png' },
-      { name: 'Sponsor 5', image: '/int.png' },
-      { name: 'Sponsor 6', image: '/int.png' },
-      { name: 'Sponsor 7', image: '/int.png' }
+      { name: 'Balta Burger', image: '/baltaburger.png' },
+      { name: 'Malatya Büyükşehir Belediyesi', image: '/malatyabüyükşehir.jpeg' },
+      { name: 'Neovista', image: '/neovista.jpeg' },
+      { name: 'Mahzen', image: '/mahzen.jpg' },
+      { name: 'Vefa Bozacısı', image: '/vefabozacısı.png' },
+      { name: 'Kahve Dünyası', image: '/kahvedünyası.jpg' },
+      { name: 'Bosch', image: '/bosch.jpg' },
+      { name: 'Enjoy Bowling', image: '/enjoybowling.jpg' }
     ],
   },
 ];

@@ -1,8 +1,5 @@
 import {
-  PiGithubLogoDuotone,
   PiInstagramLogoDuotone,
-  PiLinkedinLogoDuotone,
-  PiTwitterLogoDuotone,
 } from 'react-icons/pi';
 import './Footer.css';
 
@@ -14,14 +11,29 @@ const quickLinks = [
   { href: '#iletisim', label: 'İletişim' },
 ];
 
+const socialLinks = [
+  {
+    href: 'https://www.instagram.com/hsdinonu?igsh=MWtqMGRwOWFvZjU2dw==',
+    label: 'HSD İnönü',
+  },
+  {
+    href: 'https://www.instagram.com/hsdmtu?igsh=OHM1YWcwZ3dvdmhu',
+    label: 'HSD MTÜ',
+  },
+  {
+    href: 'https://www.instagram.com/hsdfirat?igsh=MmYzZTI1MGtzaTdn',
+    label: 'HSD Fırat',
+  },
+];
+
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-mega-brand" aria-hidden="true">
           <div className="footer-mega-brand-track">
-            <span>DOĞU ANADOLU ZİRVESİ</span>
-            <span>DOĞU ANADOLU ZİRVESİ</span>
+            <span>TEKNOLOJİ VE YENİLİK ZİRVESİ</span>
+            <span>TEKNOLOJİ VE YENİLİK ZİRVESİ</span>
           </div>
         </div>
 
@@ -32,10 +44,19 @@ export default function Footer() {
               dijital platform.
             </p>
             <div className="footer-social">
-              <a href="#" aria-label="Instagram"><PiInstagramLogoDuotone /></a>
-              <a href="#" aria-label="Twitter"><PiTwitterLogoDuotone /></a>
-              <a href="#" aria-label="LinkedIn"><PiLinkedinLogoDuotone /></a>
-              <a href="#" aria-label="GitHub"><PiGithubLogoDuotone /></a>
+              {socialLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  aria-label={link.label}
+                  title={link.label}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <PiInstagramLogoDuotone />
+                  <span>{link.label}</span>
+                </a>
+              ))}
             </div>
           </div>
 
@@ -70,7 +91,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <span className="copyright">© 2025 DAZ. Tüm hakları saklıdır.</span>
+          <span className="copyright">© 2026. Tüm hakları saklıdır.</span>
           <div className="footer-dev">
             <span className="footer-dev-dot" />
             <span>HUAWEI STUDENT DEVELOPERS</span>

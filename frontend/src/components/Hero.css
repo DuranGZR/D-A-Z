@@ -17,7 +17,7 @@
   position: relative;
   z-index: 2;
   text-align: center;
-  max-width: 800px;
+  max-width: 1200px;
   padding: 0 24px;
 }
 
@@ -84,8 +84,16 @@
   animation: hero-letter-reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.hero-title-word:nth-child(1) { animation-delay: 0.5s; }
-.hero-title-word:nth-child(2) { animation-delay: 0.65s; }
+.hero-title-line {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.35em, 1vw, 0.65em);
+  white-space: nowrap;
+}
+
+.hero-title-line .hero-title-word:nth-child(1) { animation-delay: 0.5s; }
+.hero-title-line .hero-title-word:nth-child(2) { animation-delay: 0.65s; }
+.hero-title-line .hero-title-word:nth-child(3) { animation-delay: 0.8s; }
 
 .hero-title-accent {
   display: block;
@@ -94,7 +102,7 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   opacity: 0;
-  animation: hero-accent-sweep 1s cubic-bezier(0.22, 1, 0.36, 1) 0.8s forwards;
+  animation: hero-accent-sweep 1s cubic-bezier(0.22, 1, 0.36, 1) 0.95s forwards;
 }
 
 .hero-date {
@@ -231,6 +239,11 @@
 }
 
 @media (max-width: 768px) {
+  .hero-title-line {
+    flex-wrap: wrap;
+    gap: 0 0.35em;
+    white-space: normal;
+  }
   .countdown {
     gap: 8px;
   }

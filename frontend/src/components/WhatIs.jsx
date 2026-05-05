@@ -6,7 +6,7 @@ const cards = [
   {
     icon: <PiBookOpenDuotone />,
     
-    text: 'HSD İnönü Topluluğu tarafından düzenlenen Doğu Anadolu Zirvesi, yalnızca bir etkinlik değil; bölgenin teknoloji ve girişimcilik anlamında sahip olduğu büyük potansiyelin görünür kılınmasına yönelik stratejik bir adımdır. Bu zirve, yerel dinamiklerin ulusal ve küresel teknoloji trendleriyle buluştuğu, gençlerin ilham aldığı ve kendine yol çizdiği bir platform olmayı amaçlamaktadır.',
+    text: 'HSD İnönü, HSD Turgut Özal ve HSD Fırat Toplulukları tarafından düzenlenen Teknoloji ve Yenilik Zirvesi, yalnızca bir etkinlik değil; bölgenin teknoloji ve girişimcilik anlamında sahip olduğu büyük potansiyelin görünür kılınmasına yönelik stratejik bir adımdır. Bu zirve, yerel dinamiklerin ulusal ve küresel teknoloji trendleriyle buluştuğu, gençlerin ilham aldığı ve kendine yol çizdiği bir platform olmayı amaçlamaktadır.',
   },
   {
     icon: <PiUsersThreeDuotone />,
@@ -34,7 +34,7 @@ export default function WhatIs() {
     <section className="whatis" id="nedir">
       <div className="container">
         <h2 className="section-title reveal">
-          Doğu Anadolu Zirvesi <span>Nedir?</span>
+          Teknoloji ve Yenilik Zirvesi <span>Nedir?</span>
         </h2>
         <p className="section-subtitle reveal">
           Bölgenin en büyük teknoloji ve girişimcilik buluşması
