@@ -1,140 +1,216 @@
 /* ========================================
-   WhatIs Section — "Doğu Anadolu Zirvesi Nedir?"
+   WhatIs Section — "Teknoloji ve Yenilik Zirvesi Nedir?"
+   Awwwards-style pinned scroll experience
    ======================================== */
 
 .whatis {
-  padding: var(--section-padding);
   position: relative;
   background: rgb(255, 255, 255);
-  /* En az bir tam ekran yüksekliği; içerik fazlaysa büyür */
-  min-height: 100vh;
-  min-height: 100dvh;
+  overflow: hidden;
+}
+
+[data-theme="light"] .whatis {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+/* Desktop pinned stage */
+.whatis-pin {
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.whatis-stage {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 96px 24px 80px;
   box-sizing: border-box;
+  position: relative;
+  gap: 56px;
 }
 
-.whatis > .container {
-  width: 100%;
-}
-
-.whatis-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+/* ---- Header (title + subtitle) ---- */
+.whatis-header {
+  text-align: center;
+  will-change: transform, filter, opacity;
+  max-width: 900px;
   margin: 0 auto;
-  align-items: start;
 }
 
-.whatis-card {
-  padding: 0;
-  border: none;
-  background: transparent;
+.whatis-title {
+  margin-bottom: 16px;
+  font-size: clamp(2.2rem, 5.2vw, 3.6rem);
+}
+
+.whatis-subtitle {
+  margin: 0 auto;
+  max-width: 640px;
+}
+
+/* ---- Paragraph stage (overlapping cards) ---- */
+.whatis-paragraphs {
+  position: relative;
+  width: 100%;
+  max-width: 880px;
+  height: clamp(320px, 42vh, 460px);
+  margin: 0 auto;
+  /* Horizontal blur curtain edges to enhance the "blur perdesi" feel */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+}
+
+.whatis-paragraph {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 22px;
+  padding: 0 24px;
+  will-change: transform, filter, opacity;
+  pointer-events: none;
 }
 
-.whatis-card-header {
-  display: flex;
-  flex-direction: column;
-  cursor: default; 
-}
-
-.whatis-card-title {
-  display: none; 
-}
-
-.whatis-card-toggle {
-  display: none; 
-}
-
-.whatis-card-content {
-  display: block; 
-}
-
-.whatis-card-icon {
+.whatis-paragraph-icon {
   font-size: 3rem;
-  color: var(--color-white);
-  margin-bottom: 24px;
+  color: var(--color-red);
   display: inline-flex;
-  transition: all var(--transition-base);
+  filter: drop-shadow(0 8px 20px rgba(220, 38, 38, 0.25));
 }
 
-[data-theme="light"] .whatis-card-icon {
+.whatis-paragraph-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
   color: var(--color-white);
+  margin: 0;
+  background: var(--gradient-red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.whatis-card:hover .whatis-card-icon {
-  color: var(--color-red);
-  transform: translateY(-4px) scale(1.05);
-  filter: drop-shadow(0 8px 16px rgba(220, 38, 38, 0.4));
-}
-
-[data-theme="light"] .whatis-card:hover .whatis-card-icon {
-  color: var(--color-red);
-  filter: drop-shadow(0 4px 12px rgba(220, 38, 38, 0.2));
-}
-
-.whatis-card p {
+.whatis-paragraph-text {
   color: var(--color-white-muted);
-  font-size: 1rem;
-  /* Slightly larger, better line height */
-  line-height: 1.8;
+  font-size: clamp(1rem, 1.15vw, 1.125rem);
+  line-height: 1.85;
   letter-spacing: -0.01em;
+  max-width: 760px;
+  margin: 0 auto;
 }
 
-@media (max-width: 1024px) {
-  .whatis-cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-  }
+[data-theme="light"] .whatis-paragraph-text {
+  color: var(--color-white-muted);
 }
 
+/* ---- Progress dots ---- */
+.whatis-progress {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.whatis-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-red);
+  transform-origin: center;
+  will-change: transform, opacity;
+  box-shadow: 0 0 16px rgba(220, 38, 38, 0.4);
+}
+
+/* Mobile accordion stays hidden on desktop */
+.whatis-mobile {
+  display: none;
+}
+
+/* ========================================
+   MOBILE — disable pin, use accordion
+   ======================================== */
 @media (max-width: 768px) {
   .whatis {
     padding: 60px 0;
   }
-  .section-title {
+
+  .whatis-pin {
+    display: none;
+  }
+
+  .whatis-mobile {
+    display: block;
+  }
+
+  .whatis-mobile .section-title {
     font-size: 2rem;
   }
-  .section-subtitle {
+
+  .whatis-mobile .section-subtitle {
     font-size: 0.95rem;
     margin-bottom: 30px;
   }
+
   .whatis-cards {
     display: flex;
     flex-direction: column;
     gap: 16px;
   }
+
   .whatis-card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
-    padding: 0;
-    margin: 0;
     overflow: hidden;
     transition: all 0.3s ease;
   }
-  
+
+  [data-theme="light"] .whatis-card {
+    background: rgba(15, 23, 42, 0.03);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+  }
+
   .whatis-card-header {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 24px;
-    cursor: pointer; 
+    cursor: pointer;
     background: transparent;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
   }
-  
+
   .whatis-card-icon {
     font-size: 1.8rem;
-    margin-bottom: 0;
     margin-right: 16px;
     color: var(--color-red);
+    display: inline-flex;
   }
-  
+
   .whatis-card-title {
     display: block;
     font-size: 1.1rem;
@@ -143,10 +219,11 @@
     flex-grow: 1;
     margin: 0;
   }
+
   [data-theme="light"] .whatis-card-title {
     color: var(--color-dark-gray);
   }
-  
+
   .whatis-card-toggle {
     display: flex;
     align-items: center;
@@ -155,33 +232,57 @@
     color: var(--color-gray-text);
     transition: transform 0.3s ease;
   }
+
   .whatis-card.active .whatis-card-toggle {
     transform: rotate(180deg);
     color: var(--color-red);
   }
 
-  /* --- Akordiyon İçerik (Açılıp Kapanan Alan) --- */
   .whatis-card-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease;
   }
+
   .whatis-card.active .whatis-card-content {
     max-height: 1200px;
   }
-  
+
   .whatis-card-content-inner {
     overflow: hidden;
   }
 
   .whatis-card-content p {
-    padding: 0 24px 24px 24px; 
+    padding: 0 24px 24px 24px;
     margin: 0;
     font-size: 0.95rem;
     line-height: 1.6;
     color: var(--color-white-muted);
   }
+
   [data-theme="light"] .whatis-card-content p {
     color: var(--color-gray-text);
+  }
+}
+
+/* Reduced motion: skip the heavy scroll animation */
+@media (prefers-reduced-motion: reduce) {
+  .whatis-header,
+  .whatis-paragraph {
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+
+  .whatis-paragraphs {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .whatis-paragraph {
+    position: relative;
+    inset: auto;
   }
 }
