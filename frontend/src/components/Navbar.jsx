@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
-      <div className="container navbar-inner">
+      <div className="navbar-track">
         <button
           className={`navbar-toggle${menuOpen ? ' open' : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}
@@ -34,12 +34,14 @@ export default function Navbar() {
           <span /><span /><span />
         </button>
 
-        <div className={`navbar-links${menuOpen ? ' open' : ''}`}>
-          {navLinks.map((link) => (
-            <a key={link.href} href={link.href} onClick={handleLinkClick}>
-              {link.label}
-            </a>
-          ))}
+        <div className={`navbar-pill${scrolled ? ' is-active' : ''}`}>
+          <div className={`navbar-links${menuOpen ? ' open' : ''}`}>
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} onClick={handleLinkClick}>
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
       {menuOpen && (
@@ -50,7 +52,6 @@ export default function Navbar() {
           onClick={() => setMenuOpen(false)}
         />
       )}
-      <div className="navbar-glass-border" />
     </nav>
   );
 }

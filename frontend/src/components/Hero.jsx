@@ -42,7 +42,7 @@ export default function Hero() {
     const layerMountain = root.querySelector('.hero-layer--mountain img');
     /* Maske img üzerindeyken bazı tarayıcılarda transform uygulanmıyor; parallax bu sarmalayıcıda */
     const layerCloud = root.querySelector('.hero-cloud-parallax');
-    const content = root.querySelector('.hero-content');
+    const content = root.querySelector('.hero-foreground');
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -117,44 +117,44 @@ export default function Hero() {
             </div>
           </div>
         </div>
-        <div className="hero-vignette" aria-hidden="true" />
-        <div className="hero-content">
-          <h1 className="hero-title">
-            <span className="hero-title-line">
-              <span className="hero-title-word">TEKNOLOJİ</span>
-              <span className="hero-title-word">VE</span>
-              <span className="hero-title-word">YENİLİK</span>
-            </span>
-            <span className="hero-title-accent">ZİRVESİ</span>
-          </h1>
-
-          <p className="hero-date">
-            <FiCalendar style={{ verticalAlign: 'middle', marginRight: 8 }} />
-            <strong>11 Mayıs 2026</strong> &bull; Kongre ve Kültür Merkezi, Malatya
-          </p>
-
-          <div className="countdown">
-            {[
-              { value: timeLeft.days, label: 'Gün' },
-              { value: timeLeft.hours, label: 'Saat' },
-              { value: timeLeft.minutes, label: 'Dakika' },
-              { value: timeLeft.seconds, label: 'Saniye' },
-            ].map((item) => (
-              <div className="countdown-item" key={item.label}>
-                <div className="countdown-number">{pad(item.value)}</div>
-                <div className="countdown-label">{item.label}</div>
-              </div>
-            ))}
+        <div className="hero-countdown-stage">
+          <div className="hero-countdown-zone">
+            <div className="countdown">
+              {[
+                { value: timeLeft.days, label: 'Gün' },
+                { value: timeLeft.hours, label: 'Saat' },
+                { value: timeLeft.minutes, label: 'Dakika' },
+                { value: timeLeft.seconds, label: 'Saniye' },
+              ].map((item) => (
+                <div className="countdown-item" key={item.label}>
+                  <div className="countdown-number">{pad(item.value)}</div>
+                  <div className="countdown-label">{item.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
-
-          <p className="hero-slogan">
-            Teknoloji, inovasyon ve girişimcilik zirvesine hazır mısınız?
-          </p>
-
-          <div className="hero-buttons">
-            <a href="#hakkimizda" className="btn-ghost">
-              Keşfet
+        </div>
+        <div className="hero-vignette" aria-hidden="true" />
+        <div className="hero-foreground">
+          <div className="hero-content hero-content--top">
+            <a href="#anasayfa" className="hero-logo" aria-label="Anasayfa">
+              <img src="/HSD-Beyaz-Logo.png" alt="" width={180} height={73} decoding="async" draggable={false} />
             </a>
+            <h1 className="hero-title">
+              <span className="hero-title-line">
+                <span className="hero-title-word">TEKNOLOJİ</span>
+                <span className="hero-title-word">VE</span>
+                <span className="hero-title-word">YENİLİK</span>
+              </span>
+              <span className="hero-title-accent">ZİRVESİ</span>
+            </h1>
+
+            <p className="hero-date">
+              <span className="hero-date-chalk">
+                <FiCalendar className="hero-date-icon" aria-hidden />
+                <strong>11 Mayıs 2026</strong> <span className="hero-date-sep">·</span> Kongre ve Kültür Merkezi, Malatya
+              </span>
+            </p>
           </div>
         </div>
       </div>
