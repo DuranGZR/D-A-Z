@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { FiMoon, FiSun } from 'react-icons/fi';
-import { useTheme } from '../contexts/ThemeContext';
 
 const navLinks = [
   { href: '#nedir', label: 'Nedir?' },
@@ -15,7 +13,6 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -26,16 +23,13 @@ export default function Navbar() {
   const handleLinkClick = () => setMenuOpen(false);
 
   return (
-    <nav className={`navbar${scrolled ? ' scrolled' : ''}`} id="anasayfa">
-      <div className="container">
-        <div className="navbar-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <img src="/HSD-Beyaz-Logo.png" alt="Huawei Student Developers Logo" className="navbar-logo-img" />
-        </div>
-
+    <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
+      <div className="container navbar-inner">
         <button
           className={`navbar-toggle${menuOpen ? ' open' : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Menü"
+          type="button"
         >
           <span /><span /><span />
         </button>
@@ -46,14 +40,6 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-
-          <button
-            className="theme-toggle-btn"
-            onClick={toggleTheme}
-            aria-label="Tema değiştir"
-          >
-            {theme === 'dark' ? <FiSun /> : <FiMoon />}
-          </button>
         </div>
       </div>
       {menuOpen && (

@@ -9,7 +9,7 @@ import Partners from './components/Partners';
 import Sponsors from './components/Sponsors';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import { ThemeProvider } from './contexts/ThemeContext';
+import { useLandingAnimations } from './hooks/useLandingAnimations';
 
 function useScrollReveal() {
   useEffect(() => {
@@ -32,9 +32,10 @@ function useScrollReveal() {
 
 export default function App() {
   useScrollReveal();
+  useLandingAnimations();
 
   return (
-    <ThemeProvider>
+    <>
       {/* Fixed global background */}
       <div className="global-bg" aria-hidden="true">
         <div className="global-bg-gradient" />
@@ -55,6 +56,6 @@ export default function App() {
       <Sponsors />
       <Contact />
       <Footer />
-    </ThemeProvider>
+    </>
   );
 }
