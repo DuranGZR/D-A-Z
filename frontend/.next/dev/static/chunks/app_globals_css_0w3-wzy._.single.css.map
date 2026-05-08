@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/globals.css"],"sourcesContent":["@import '../src/index.css';\n@import '../src/App.css';\n@import '../src/components/Navbar.css';\n@import '../src/components/Hero.css';\n@import '../src/components/WhatIs.css';\n@import '../src/components/WhyAttend.css';\n@import '../src/components/About.css';\n@import '../src/components/Speakers.css';\n@import '../src/components/Partners.css';\n@import '../src/components/Sponsors.css';\n@import '../src/components/Contact.css';\n@import '../src/components/Footer.css';\n"],"names":[],"mappings":""}}]
+}

@@ -1,5 +1,4 @@
 import { PiEnvelopeDuotone, PiMapPinDuotone } from 'react-icons/pi';
-import './Contact.css';
 
 const venueName = 'Malatya Kongre ve Kültür Merkezi';
 const mapQuery = encodeURIComponent(venueName);

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FiMoon, FiSun } from 'react-icons/fi';
 import { useTheme } from '../contexts/ThemeContext';
-import './Navbar.css';
 
 const navLinks = [
   { href: '#nedir', label: 'Nedir?' },

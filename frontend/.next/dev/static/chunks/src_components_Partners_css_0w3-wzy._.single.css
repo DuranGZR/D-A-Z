@@ -1,0 +1,95 @@
+/* [project]/src/components/Partners.css [app-client] (css) */
+.partners {
+  padding: var(--section-padding);
+  background: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.marquee {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, #0000, #000 15% 85%, #0000);
+  mask-image: linear-gradient(to right, #0000, #000 15% 85%, #0000);
+}
+
+.marquee-track {
+  gap: 24px;
+  width: max-content;
+  animation: 25s linear infinite marquee-scroll;
+  display: flex;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.partner-item {
+  cursor: pointer;
+  background: none;
+  border: none;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  display: flex;
+}
+
+.partner-img {
+  object-fit: contain;
+  opacity: .85;
+  width: auto;
+  height: 80px;
+  transition: all .4s cubic-bezier(.22, 1, .36, 1);
+}
+
+[data-theme="light"] .partner-img {
+  opacity: .9;
+}
+
+.partner-item:hover .partner-img {
+  opacity: 1;
+  filter: drop-shadow(0 4px 12px #ffffff1a);
+  transform: scale(1.05);
+}
+
+[data-theme="light"] .partner-item:hover .partner-img {
+  filter: drop-shadow(0 4px 12px #0000001a);
+}
+
+@media (max-width: 768px) {
+  .marquee-track {
+    gap: 16px;
+  }
+
+  .partner-item {
+    padding: 0 24px;
+  }
+
+  .partner-img {
+    height: 62px;
+  }
+}
+
+@media (max-width: 420px) {
+  .partner-item {
+    padding: 0 16px;
+  }
+
+  .partner-img {
+    height: 52px;
+  }
+}
+
+/*# sourceMappingURL=src_components_Partners_css_0w3-wzy._.single.css.map*/

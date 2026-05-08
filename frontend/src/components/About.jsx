@@ -6,7 +6,6 @@ import {
   PiUsersDuotone,
   PiGlobeHemisphereEastDuotone,
 } from 'react-icons/pi';
-import './About.css';
 
 const stats = [
   { value: 10, suffix: '+', label: 'Konuşmacı' },

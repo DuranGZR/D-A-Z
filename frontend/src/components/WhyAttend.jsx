@@ -1,5 +1,4 @@
 import { PiMicrophoneStageDuotone, PiUsersThreeDuotone, PiSparkleDuotone, PiCertificateDuotone } from 'react-icons/pi';
-import './WhyAttend.css';
 
 const reasons = [
   {

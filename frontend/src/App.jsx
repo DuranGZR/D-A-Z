@@ -10,7 +10,6 @@ import Sponsors from './components/Sponsors';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { ThemeProvider } from './contexts/ThemeContext';
-import './App.css';
 
 function useScrollReveal() {
   useEffect(() => {

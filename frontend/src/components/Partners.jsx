@@ -1,5 +1,3 @@
-import './Partners.css';
-
 const partners = [
   { name: 'Büyükşehir Belediyesi', image: '/logo/malatyabüyüksehir.jpeg' },
   { name: 'İnönü Üniversitesi', image: '/logo/inönüv2.png' },

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { PiBookOpenDuotone, PiUsersThreeDuotone, PiTrendUpDuotone, PiCaretDownBold } from 'react-icons/pi';
-import './WhatIs.css';
 
 const cards = [
   {

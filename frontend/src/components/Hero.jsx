@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { FiArrowRight, FiCalendar } from 'react-icons/fi';
-import './Hero.css';
 
 const EVENT_DATE = new Date('2026-05-11T10:00:00');
+const INITIAL_TIME_LEFT = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
 function getTimeLeft() {
   const now = new Date();
@@ -17,9 +17,10 @@ function getTimeLeft() {
 }
 
 export default function Hero() {
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft);
+  const [timeLeft, setTimeLeft] = useState(INITIAL_TIME_LEFT);
 
   useEffect(() => {
+    setTimeLeft(getTimeLeft());
     const timer = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
     return () => clearInterval(timer);
   }, []);

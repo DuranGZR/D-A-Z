@@ -1,7 +1,6 @@
 import {
   PiInstagramLogoDuotone,
 } from 'react-icons/pi';
-import './Footer.css';
 
 const quickLinks = [
   { href: '#anasayfa', label: 'Ana Sayfa' },

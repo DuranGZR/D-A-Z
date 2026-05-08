@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { FiUser, FiX } from 'react-icons/fi';
-import './Speakers.css';
 
 const speakers = [
   {

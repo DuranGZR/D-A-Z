@@ -1,5 +1,3 @@
-import './Sponsors.css';
-
 const tiers = [
   {
     label: 'Ana Sponsorlar',
