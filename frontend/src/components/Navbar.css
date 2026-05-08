@@ -36,33 +36,26 @@
   min-width: 0;
   position: relative;
   padding: 0;
+  /* Kendi kompozit katmanı: backdrop-filter güvenilir çalışsın */
+  isolation: isolate;
   transition:
     padding 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease,
     border-radius 0.45s ease;
 }
 
-/* Blur: pseudo-element — en tarayıcı-uyumlu yöntem */
 .navbar-pill.is-active {
-  border-radius: var(--radius-full);
+  border-radius: 9999px;
   padding: 10px clamp(20px, 3vw, 40px);
-}
-
-.navbar-pill.is-active::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-full);
-  /* Blur efektini taşıyan katman */
-  backdrop-filter: blur(20px) saturate(180%) brightness(1.05);
-  -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.05);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   box-shadow:
     0 8px 32px rgba(15, 23, 42, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  /* z-index negatif — linkler tıklanabilir kalsın */
-  z-index: -1;
-  pointer-events: none;
 }
 
 .navbar-links {
@@ -71,8 +64,6 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 18px 22px;
-  position: relative;
-  z-index: 1;
 }
 
 .navbar-links a {
@@ -90,15 +81,22 @@
     0 1px 14px rgba(0, 0, 0, 0.18);
 }
 
-/* Scrolled (pill aktif) durumda da beyaz — renksiz blur üzerinde okunur */
+/* Pill aktif — blur cam üzerinde koyu yazı çok daha okunaklı */
 .navbar-pill.is-active .navbar-links a {
   font-size: 0.72rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.14em;
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.4),
-    0 1px 10px rgba(0, 0, 0, 0.2);
+  color: rgba(15, 23, 42, 0.82);
+  text-shadow: none;
+}
+
+.navbar-pill.is-active .navbar-links a:hover,
+.navbar-pill.is-active .navbar-links a.active {
+  color: rgb(221, 14, 49);
+}
+
+.navbar-pill.is-active .navbar-links a::after {
+  background: linear-gradient(90deg, transparent, rgb(221, 14, 49), transparent);
 }
 
 .navbar-links a::after {

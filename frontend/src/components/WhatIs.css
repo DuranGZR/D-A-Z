@@ -5,13 +5,18 @@
 .whatis {
   padding: var(--section-padding);
   position: relative;
-  /* Hero ile aynı üst zemin; sert üst çizgi yerine yumuşak bağlanma */
-  background: linear-gradient(
-      180deg,
-      #f8fafc 0%,
-      rgba(248, 250, 252, 0) min(100px, 12vw)
-    ),
-    transparent;
+  background: rgb(255, 255, 255);
+  /* En az bir tam ekran yüksekliği; içerik fazlaysa büyür */
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.whatis > .container {
+  width: 100%;
 }
 
 .whatis-cards {

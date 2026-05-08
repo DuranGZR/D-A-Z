@@ -56,7 +56,7 @@ export function useLandingAnimations() {
     if (gradient) {
       animeInstances.push(
         animate(gradient, {
-          scale: [1, 1.04],
+          opacity: [0.6, 1],
           duration: 8000,
           ease: 'inOutSine',
           loop: true,

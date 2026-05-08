@@ -37,9 +37,10 @@
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0;
-  animation: orb-float 12s ease-in-out infinite alternate;
+  /* 80px blur GPU bellek/perf yiyordu — 50px yine yumuşak */
+  filter: blur(50px);
+  opacity: 0.5;
+  /* Sürekli opacity animasyonu kaldırıldı: statik orb yeterli atmosfer */
 }
 
 .orb-1 {
@@ -48,59 +49,6 @@
   background: radial-gradient(circle, rgba(220, 38, 38, 0.18) 0%, transparent 70%);
   top: -5%;
   left: -5%;
-  animation-duration: 14s;
-  animation-delay: 0s;
-}
-
-.orb-2 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(185, 28, 28, 0.12) 0%, transparent 70%);
-  top: 30%;
-  right: -8%;
-  animation-duration: 18s;
-  animation-delay: -4s;
-}
-
-.orb-3 {
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(239, 68, 68, 0.1) 0%, transparent 70%);
-  bottom: 10%;
-  left: 25%;
-  animation-duration: 16s;
-  animation-delay: -8s;
-}
-
-.orb-4 {
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, rgba(220, 38, 38, 0.08) 0%, transparent 70%);
-  top: 60%;
-  left: -10%;
-  animation-duration: 20s;
-  animation-delay: -2s;
-}
-
-.orb-5 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
-  top: 15%;
-  right: 15%;
-  animation-duration: 22s;
-  animation-delay: -6s;
 }
 
 [data-theme="light"] .orb-1 { background: radial-gradient(circle, rgba(220, 38, 38, 0.06) 0%, transparent 70%); }
-[data-theme="light"] .orb-2 { background: radial-gradient(circle, rgba(185, 28, 28, 0.04) 0%, transparent 70%); }
-[data-theme="light"] .orb-3 { background: radial-gradient(circle, rgba(239, 68, 68, 0.04) 0%, transparent 70%); }
-[data-theme="light"] .orb-4 { background: radial-gradient(circle, rgba(220, 38, 38, 0.03) 0%, transparent 70%); }
-[data-theme="light"] .orb-5 { background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%); }
-
-@keyframes orb-float {
-  0%   { opacity: 0.4; }
-  33%  { opacity: 0.7; }
-  66%  { opacity: 0.5; }
-  100% { opacity: 0.6; }
-}

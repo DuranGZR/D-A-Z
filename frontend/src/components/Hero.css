@@ -141,7 +141,6 @@
   margin: 0 auto;
   /* Navbar payı için sabit üst boşluk */
   padding: clamp(96px, 13.5vh, 140px) 24px 0;
-  will-change: transform, opacity;
 }
 
 .hero-content {
@@ -252,21 +251,28 @@
     0 0 8px rgba(255, 255, 255, 0.2);
 }
 
-/* Akrilik fırça darbesi: SVG turbulence ile doğal kenar dalgası */
+/* Akrilik boya — SVG turbulence yerine gradient + organik radius (perf) */
 .hero-date-chalk::before {
   content: '';
   position: absolute;
   z-index: -1;
-  inset: -0.55em -0.55em;
+  inset: -0.45em -0.55em;
   pointer-events: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 100' preserveAspectRatio='none'><defs><filter id='r' x='-5%' y='-12%' width='110%' height='124%'><feTurbulence type='fractalNoise' baseFrequency='0.022 0.45' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='7'/></filter><linearGradient id='g' x1='0' y1='0' x2='1' y2='0.22'><stop offset='0%' stop-color='%23fef08a' stop-opacity='0.82'/><stop offset='28%' stop-color='%23fde047' stop-opacity='0.96'/><stop offset='62%' stop-color='%23facc15' stop-opacity='0.95'/><stop offset='100%' stop-color='%23eab308' stop-opacity='0.86'/></linearGradient></defs><g filter='url(%23r)'><rect x='10' y='14' width='580' height='72' rx='14' fill='url(%23g)'/><rect x='18' y='74' width='564' height='5' rx='2.5' fill='%23a16207' opacity='0.22'/></g></svg>");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+  border-radius: 18px 24px 16px 22px / 22px 18px 24px 18px;
   transform: rotate(-1.2deg);
-  opacity: 0.96;
-  filter:
-    drop-shadow(0 1px 0 rgba(120, 53, 15, 0.18))
-    drop-shadow(0 2px 6px rgba(202, 138, 4, 0.18));
+  background:
+    linear-gradient(
+      96deg,
+      rgba(254, 240, 138, 0.94) 0%,
+      rgba(253, 224, 71, 0.96) 32%,
+      rgba(250, 204, 21, 0.95) 62%,
+      rgba(234, 179, 8, 0.9) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 0 rgba(161, 98, 7, 0.3),
+    0 1px 0 rgba(120, 53, 15, 0.18),
+    0 2px 6px rgba(202, 138, 4, 0.18);
 }
 
 /* Üstte ışık parıltısı — akrilik nemli yüzey */
@@ -286,7 +292,6 @@
     rgba(255, 252, 220, 0.25) 62%,
     transparent 96%
   );
-  filter: blur(0.6px);
   transform: rotate(-1.2deg);
   opacity: 0.85;
 }
@@ -368,19 +373,13 @@
   letter-spacing: -0.02em;
   /* Başlıkla aynı kırmızı */
   color: rgb(221, 14, 49);
+  /* 3D ekstrüzyon — daha az katman, görsel olarak benzer */
   text-shadow:
-    /* 3D ekstrüzyon — koyulaşan kırmızılar */
-    0 1px 0 rgb(195, 12, 43),
     0 2px 0 rgb(170, 11, 38),
-    0 3px 0 rgb(146, 9, 32),
     0 4px 0 rgb(122, 8, 27),
-    0 5px 0 rgb(99, 6, 22),
     0 6px 0 rgb(78, 5, 17),
-    0 7px 0 rgb(58, 3, 13),
-    /* Yumuşak yer gölgesi */
-    0 8px 4px rgba(0, 0, 0, 0.18),
-    0 12px 18px rgba(0, 0, 0, 0.18),
-    0 20px 30px rgba(0, 0, 0, 0.16);
+    0 8px 12px rgba(0, 0, 0, 0.22),
+    0 14px 22px rgba(0, 0, 0, 0.16);
 }
 
 .countdown-label {
@@ -432,13 +431,10 @@
   .countdown-number {
     font-size: clamp(2.6rem, 14vw, 4.2rem);
     text-shadow:
-      0 1px 0 rgb(195, 12, 43),
       0 2px 0 rgb(170, 11, 38),
-      0 3px 0 rgb(146, 9, 32),
       0 4px 0 rgb(122, 8, 27),
-      0 5px 0 rgb(99, 6, 22),
-      0 6px 4px rgba(0, 0, 0, 0.2),
-      0 10px 16px rgba(0, 0, 0, 0.18);
+      0 6px 8px rgba(0, 0, 0, 0.22),
+      0 10px 14px rgba(0, 0, 0, 0.16);
   }
 
   .countdown-label {
