@@ -2,33 +2,51 @@ import './Sponsors.css';
 
 const tiers = [
   {
-    label: 'Ana Sponsor',
+    label: 'Ana Sponsorlar',
     tier: 'gold',
     items: [
-      { name: 'Teknokent', image: '/teknokent.jpeg' },
-      { name: 'Matris', image: '/matris.png' },
-      { name: 'Matris Koç', image: '/matriskoç.png' }
+      { name: 'Yeşilyurt Belediyesi', image: '/logo/yesilyurtbelediyesi.png' },
+      { name: 'Malatya Teknokent', image: '/logo/malatyateknokenet.jpg' },
+      { name: 'Matris Kurs', image: '/logo/matrislogo.jpg' },
+      { name: 'Matris Coach', image: '/logo/matriscoachlogo.png' }
     ],
   },
   {
-    label: 'Gümüş Sponsor',
+    label: 'Platinium Sponsorlar',
     tier: 'silver',
     items: [
-      { name: 'English Time', image: '/int.png' }
+      { name: 'English Time', image: '/logo/englishtime.jpg' },
+      { name: 'Neşve', image: '/logo/nesvekafe.jpeg' },
+      { name: 'Doğu Batı Kurs Merkezi', image: '/logo/dogubatıkurs.png' },
+      { name: 'Acım Çiğköfte', image: '/logo/acimcigköfte.jpeg' },
+      { name: 'ModaDil', image: '/logo/modadil.jpeg' },
+      { name: 'Dilcim', image: '/logo/dilcim.jpeg' },
+      { name: 'Boston', image: '/logo/bostondd.jpeg' },
+      { name: 'MG Hotel', image: '/logo/mghillresidence.jpeg' },
+      { name: 'Laser Tag', image: '/logo/lasertag.jpeg' },
+      { name: 'Şirehan', image: '/logo/sirehan.jpeg' },
+      { name: 'Terra Pizza', image: '/logo/terrapizza.jpeg' },
+      { name: 'Luuq', image: '/logo/luuq.jpeg' },
+      { name: 'Iceberry', image: '/logo/iceberrycafe.jpeg' },
+      { name: 'Fitbull Gym', image: '/logo/fitbullgym.jpeg' },
+      { name: 'Mr. Bon', image: '/logo/mrbon.jpeg' }
     ],
   },
   {
-    label: 'Bronz Sponsor',
+    label: 'Gümüş Sponsorlar',
     tier: 'bronze',
     items: [
-      { name: 'Balta Burger', image: '/baltaburger.png' },
-      { name: 'Malatya Büyükşehir Belediyesi', image: '/malatyabüyükşehir.jpeg' },
-      { name: 'Neovista', image: '/neovista.jpeg' },
-      { name: 'Mahzen', image: '/mahzen.jpg' },
-      { name: 'Vefa Bozacısı', image: '/vefabozacısı.png' },
-      { name: 'Kahve Dünyası', image: '/kahvedünyası.jpg' },
-      { name: 'Bosch', image: '/bosch.jpg' },
-      { name: 'Enjoy Bowling', image: '/enjoybowling.jpg' }
+      { name: 'Kahve Durağı', image: '/logo/kahveduragi.jpeg' },
+      { name: 'Vefa Bozacısı', image: '/logo/vefabozacisi.jpeg' },
+      { name: 'Enjoy Bowling', image: '/logo/enjoybowling.jpeg' },
+      { name: 'Mahzen', image: '/logo/mahzenoyun.jpeg' },
+      { name: 'Neo Vista', image: '/logo/neovista.jpeg' },
+      { name: 'Game Mood PlayStation Cafe', image: '/logo/gamemood.jpeg' },
+      { name: 'Hanedan', image: '/logo/hanedan.jpeg' },
+      { name: 'Nar Künefe', image: '/logo/narkünefe.jpeg' },
+      { name: 'Murat Örnek', image: '/logo/muratörnek.jpeg' },
+      { name: 'Pia Makarna', image: '/logo/piamakarna.jpeg' },
+      { name: 'Gülbe Şekerleme', image: '/logo/gülbeseker.jpeg' }
     ],
   },
 ];

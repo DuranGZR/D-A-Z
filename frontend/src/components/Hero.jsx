@@ -64,9 +64,6 @@ export default function Hero() {
         </p>
 
         <div className="hero-buttons">
-          <button className="btn-primary">
-            Kayıt Ol <FiArrowRight />
-          </button>
           <a href="#hakkimizda" className="btn-ghost">
             Keşfet
           </a>

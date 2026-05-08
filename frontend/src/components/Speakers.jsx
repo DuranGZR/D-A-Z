@@ -18,18 +18,18 @@ const speakers = [
     image: '/konuşmacı2.jpeg',
   },
   {
-    name: 'Kübra Bilgiç',
-    title: 'Developer Relations Manager @ Huawei',
-    tags: ['Developer Relations', 'Topluluk', 'Huawei'],
-    bio: "Huawei'de Developer Relations Manager olarak görev yapan Kübra Bilgiç, geliştirici ilişkileri ve topluluk yönetimi üzerine deneyimlerini aktaracak.",
-    image: '/konuşmacı3.jpeg',
+    name: 'Fazıl Göleç',
+    title: 'IT Proje Yöneticisi @ Erciyes Holding',
+    tags: ['IT', 'Proje Yönetimi', 'Erciyes Holding'],
+    bio: 'Erciyes Holding bünyesinde IT Proje Yöneticisi olarak görev yapan Fazıl Göleç, proje yönetimi ve bilgi teknolojileri alanındaki deneyimlerini aktaracak.',
+    image: '/fazılgölec.jpeg',
   },
   {
     name: 'Tuncay Erol',
     title: 'Eğitmen / Yazılım ve Yapay Zeka Öğretmeni',
     tags: ['Yazılım', 'Yapay Zeka', 'Eğitim'],
     bio: 'Yazılım ve yapay zeka eğitimi alanındaki deneyimleriyle teknoloji üretimi, öğrenme süreçleri ve gelecek yetkinlikleri üzerine paylaşım yapacak.',
-    image: '/konuşmacı4.jpeg',
+    image: '/tuncayerol.jpeg',
   },
 ];
 

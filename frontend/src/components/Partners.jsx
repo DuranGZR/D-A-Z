@@ -1,12 +1,11 @@
 import './Partners.css';
 
 const partners = [
-  { name: 'İnönü Üniversitesi', image: '/inönü.png' },
-  { name: 'HSD İnönü', image: '/inönü.png' },
-  { name: 'Paydaş 1', image: '/inönü.png' },
-  { name: 'Paydaş 2', image: '/inönü.png' },
-  { name: 'Paydaş 3', image: '/inönü.png' },
-  { name: 'Paydaş 4', image: '/inönü.png' },
+  { name: 'Büyükşehir Belediyesi', image: '/logo/malatyabüyüksehir.jpeg' },
+  { name: 'İnönü Üniversitesi', image: '/logo/inönüv2.png' },
+  { name: 'Malatya Turgut Özal Üniversitesi', image: '/logo/turgutözallogo.png' },
+  { name: 'Fırat Üniversitesi', image: '/logo/fıratlogo.png' },
+  { name: 'Yeşilyurt Kent Konseyi', image: '/logo/yesilyurtkentkonseyi.png' }
 ];
 
 export default function Partners() {
