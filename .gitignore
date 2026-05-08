@@ -7,6 +7,7 @@ dist/
 dist-ssr/
 frontend/dist/
 frontend/dist-ssr/
+frontend/.next/
 
 # Environment variables (Sensitive Data)
 .env
