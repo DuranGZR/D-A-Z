@@ -4,8 +4,14 @@
 
 .whatis {
   padding: var(--section-padding);
-  background: transparent;
   position: relative;
+  /* Hero ile aynı üst zemin; sert üst çizgi yerine yumuşak bağlanma */
+  background: linear-gradient(
+      180deg,
+      #f8fafc 0%,
+      rgba(248, 250, 252, 0) min(100px, 12vw)
+    ),
+    transparent;
 }
 
 .whatis-cards {
