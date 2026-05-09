@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import WhatIs from './components/WhatIs';
@@ -35,12 +35,16 @@ function useScrollReveal() {
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   
+  const handlePreloaderComplete = useCallback(() => {
+    setIsLoading(false);
+  }, []);
+  
   useScrollReveal();
   useLandingAnimations(isLoading);
 
   return (
     <>
-      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+      <Preloader onComplete={handlePreloaderComplete} />
       
       {/* Fixed global background */}
       <div className="global-bg" aria-hidden="true">

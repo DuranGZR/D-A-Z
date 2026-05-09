@@ -59,7 +59,7 @@ const Preloader = ({ onComplete }) => {
       { opacity: 0, scale: 0.9, y: 10 },
       { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.2 }
     );
-  }, [onComplete]);
+  }, []); // Sadece mount anında bir kez çalışması yeterlidir.
 
   return (
     <div className="preloader" ref={preloaderRef}>
