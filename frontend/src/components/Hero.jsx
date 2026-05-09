@@ -43,6 +43,12 @@ export default function Hero() {
     /* Maske img üzerindeyken bazı tarayıcılarda transform uygulanmıyor; parallax bu sarmalayıcıda */
     const layerCloud = root.querySelector('.hero-cloud-parallax');
     const content = root.querySelector('.hero-foreground');
+    const isTouch = ScrollTrigger.isTouch === 1 || ScrollTrigger.isTouch === 2;
+
+    // Mobile Safari'deki sticky/parallax jitter'ını azaltmak için scroll normalizasyonu
+    if (isTouch) {
+      ScrollTrigger.normalizeScroll(true);
+    }
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -54,10 +60,10 @@ export default function Hero() {
         },
       });
 
-      if (layerBg) tl.to(layerBg, { yPercent: -4, scale: 1.025, ease: 'none' }, 0);
+      if (layerBg) tl.to(layerBg, { yPercent: -4, scale: 1.025, force3D: true, ease: 'none' }, 0);
       if (layerMountain) {
         /* Bulut yukarı (negatif y%) — dağ ters yönde: aşağı (pozitif y%) */
-        tl.to(layerMountain, { yPercent: 4.5, xPercent: -0.15, scale: 1.015, ease: 'none' }, 0);
+        tl.to(layerMountain, { yPercent: 4.5, xPercent: -0.15, scale: 1.015, force3D: true, ease: 'none' }, 0);
       }
       if (layerCloud) {
         /* Önceki değerler hâlâ fazla yukarı taşıyordu — kısa ve yumuşak kayma */
@@ -67,7 +73,7 @@ export default function Hero() {
           0,
         );
       }
-      if (content) tl.to(content, { y: -22, opacity: 0.94, ease: 'none' }, 0);
+      if (content) tl.to(content, { y: -22, opacity: 0.94, force3D: true, ease: 'none' }, 0);
     }, root);
 
     const imgs = root.querySelectorAll('.hero-layer img');

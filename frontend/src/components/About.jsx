@@ -154,7 +154,7 @@ export default function About() {
       // ---- MASTHEAD (split chars rise) ----
       const masthead = mastheadRef.current;
       if (masthead) {
-        const split = splitText(masthead, { chars: true, words: false });
+        const split = splitText(masthead, { chars: true, words: true });
         splitInstances.push(split);
         if (split.chars && split.chars.length) {
           split.chars.forEach((c) => {

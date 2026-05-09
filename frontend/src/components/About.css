@@ -177,6 +177,10 @@
   will-change: transform, opacity, filter;
 }
 
+.np-masthead-title [data-word] {
+  white-space: nowrap;
+}
+
 .np-tagline {
   display: inline-flex;
   align-items: center;
@@ -775,8 +779,10 @@
   }
 
   .np-masthead-title {
-    font-size: clamp(2rem, 11vw, 3.6rem);
+    font-size: clamp(2.2rem, 10vw, 3.2rem);
     white-space: normal;
+    line-height: 1.1;
+    padding: 10px 0;
   }
 
   .np-tagline {

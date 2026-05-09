@@ -7,6 +7,7 @@
   /* Kaydırma mesafesi: sticky sahne boyunca parallax */
   min-height: 185vh;
   z-index: 1;
+  isolation: isolate;
 }
 
 .hero-viewport {
@@ -17,10 +18,14 @@
   height: 100vh;
   min-height: 100vh;
   max-height: 100vh;
+  height: 100svh;
+  min-height: 100svh;
+  max-height: 100svh;
   overflow: hidden;
   display: flex;
   align-items: stretch;
   justify-content: center;
+  isolation: isolate;
   /* Katmanların arasına sızan bölgeler: gökyüzü tonları, sayfa zeminiyle aynı uç renk */
   background: linear-gradient(
     180deg,
@@ -46,6 +51,9 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .hero-layer img {
@@ -59,6 +67,8 @@
   will-change: transform;
   user-select: none;
   -webkit-user-drag: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .hero-layer--bg {
@@ -89,6 +99,8 @@
   transform-origin: 50% 0%;
   /* overflow:hidden = altta düz kırpma çizgisi üretir — kaldırıldı */
   overflow: visible;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .hero-layer--cloud img {
