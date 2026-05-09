@@ -4,7 +4,7 @@ import './Contact.css';
 const venueName = 'Malatya Kongre ve Kültür Merkezi';
 const mapQuery = encodeURIComponent(venueName);
 const mapDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`;
-const email = 'info@doguanadoluzirvesi.com';
+const email = 'huaweidevgroups44@gmail.com';
 
 export default function Contact() {
   return (
