@@ -9,9 +9,9 @@ import {
 import './About.css';
 
 const stats = [
-  { value: 10, suffix: '+', label: 'Konuşmacı' },
+  { value: 4, suffix: '+', label: 'Konuşmacı' },
   { value: 500, suffix: '+', label: 'Katılımcı' },
-  { value: 8, suffix: '+', label: 'Oturum' },
+  { value: 4, suffix: '+', label: 'Oturum' },
   { value: 1, suffix: '', label: 'Gün' },
 ];
 
@@ -31,8 +31,8 @@ const missionVisionItems = [
 const infoItems = [
   {
     icon: PiBookOpenTextDuotone,
-    title: 'Üniversitemiz',
-    text: "İnönü Üniversitesi'nin geniş akademik kapasitesiyle düzenlenen bu zirve, bölgedeki en büyük teknoloji etkinliklerinden biri olmayı hedefliyor.",
+    title: 'Üniversitelerimiz',
+    text: "İnönü, Mtü ve Fırat Üniversitelerinin geniş akademik kapasitesiyle düzenlenen bu zirve, bölgedeki en büyük teknoloji etkinliklerinden biri olmayı hedefliyor.",
   },
   {
     icon: PiUsersDuotone,
@@ -156,7 +156,7 @@ export default function About() {
       <div className="container">
         <h2 className="section-title reveal">Hakkımızda</h2>
         <p className="section-subtitle reveal">
-          Doğu Anadolu Zirvesi, bölgenin teknoloji ve girişimcilik potansiyelini gün yüzüne
+          Teknoloji ve Yenilik Zirvesi, bölgenin teknoloji ve girişimcilik potansiyelini gün yüzüne
           çıkarmak için tasarlandı.
         </p>
 

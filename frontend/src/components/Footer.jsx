@@ -82,8 +82,8 @@ export default function Footer() {
             <div className="footer-links-col">
               <h4 className="footer-heading">İletişim</h4>
               <div className="footer-links">
-                <a href="mailto:info@doguanadoluzirvesi.com" className="footer-mail">
-                  info@doguanadoluzirvesi.com
+                <a href="mailto:hsdinonu@gmail.com" className="footer-mail">
+                  hsdinonu@gmail.com
                 </a>
               </div>
             </div>

@@ -5,7 +5,7 @@ const venueName = 'Malatya Kongre ve Kültür Merkezi';
 const mapQuery = encodeURIComponent(venueName);
 const mapEmbedSrc = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
-const email = 'info@doguanadoluzirvesi.com';
+const email = 'hsdinonu@gmail.com';
 
 export default function Contact() {
   return (
@@ -25,7 +25,7 @@ export default function Contact() {
           <div className="contact-header">
             <h2 className="panel-title">BİZE ULAŞIN<span>.</span></h2>
             <p className="panel-subtitle">
-              Doğu Anadolu Zirvesi hakkında her türlü soru ve öneriniz için bize ulaşabilirsiniz.
+              Teknoloji ve Yenilik Zirvesi hakkında her türlü soru ve öneriniz için bize ulaşabilirsiniz.
             </p>
           </div>
 

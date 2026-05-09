@@ -19,8 +19,8 @@ const reasons = [
   },
   {
     icon: <PiCertificateDuotone />,
-    title: 'Sertifika Kazanın',
-    desc: 'Doğu Anadolu Zirvesi katılımınızdan ötürü adınıza özel hazırlanmış sertifika kazanın.',
+    title: 'Hediyeler Kazanın',
+    desc: 'Etkinlik boyu çeşitli yarışmalar ve çekilişlerle sürpriz hediyeler kazanma şansı yakalayın.',
   },
 ];
 
