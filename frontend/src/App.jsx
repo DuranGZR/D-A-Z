@@ -9,6 +9,7 @@ import Partners from './components/Partners';
 import Sponsors from './components/Sponsors';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ScrollIndicator from './components/ScrollIndicator';
 import { useLandingAnimations } from './hooks/useLandingAnimations';
 
 function useScrollReveal() {
@@ -41,6 +42,8 @@ export default function App() {
         <div className="global-bg-gradient" />
         <div className="orb orb-1" />
       </div>
+
+      <ScrollIndicator />
 
       <Navbar />
       <Hero />
