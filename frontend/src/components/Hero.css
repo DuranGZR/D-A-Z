@@ -409,8 +409,8 @@
 
 @media (max-width: 768px) {
   .hero-foreground {
-    /* Kırmızı yazıları dağın kırmızısından kurtarıp mavi gökyüzüne hizala */
-    padding: 10vh 20px 0;
+    /* Kırmızı yazıları dağın kırmızısından kurtarıp mavi gökyüzüne hizala — daha yukarı çekildi */
+    padding: 6vh 20px 0;
   }
   
   /* Devasa ve eşit boşluk bırakma */
@@ -458,8 +458,8 @@
   }
 
   .hero-countdown-stage {
-    /* Pull the countdown up to fill the empty middle space */
-    padding: 58vh 12px 0;
+    /* Sayacı, yukarı kayan içerikle dengelemek için biraz daha yukarı çekiyoruz */
+    padding: 54vh 12px 0;
   }
 
   /* Sayacı 2x2 grid yapma */
