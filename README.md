@@ -1,214 +1,85 @@
-# Doğu Anadolu Zirvesi Web Sitesi
+# Doğu Anadolu Zirvesi (DAZ)
 
-Doğu Anadolu Zirvesi web sitesi, HSD topluluğu tarafından düzenlenen teknoloji ve girişimcilik odaklı etkinlik için hazırlanmış modern, responsive ve tanıtım odaklı bir web arayüzüdür.
+Doğu Anadolu Zirvesi, teknoloji ve girişimcilik ekosistemini bir araya getiren prestijli bir etkinlik için tasarlanmış, yüksek performanslı ve editorial görsel dile sahip bir web platformudur. Platform, modern web standartlarını zorlayan animasyon hiyerarşisi ve lüks tasarım estetiği ile kullanıcıya benzersiz bir deneyim sunar.
 
-Site; etkinliğin amacını, katılımcılara sunduğu kazanımları, konuşmacıları, paydaşları, sponsorları ve iletişim bilgilerini tek sayfalık akıcı bir deneyim içinde sunar.
+## Tasarım Vizyonu
 
-## Proje Amacı
+Proje, geleneksel etkinlik sitelerinden ayrılarak Awwwards standartlarında bir "Luxury Experience" sunmayı hedefler. Midnight Navy ve derin altın tonlarının hakim olduğu palet, tipografik odaklı bir yerleşimle birleşerek platformun profesyonel ve yenilikçi karakterini yansıtır.
 
-Doğu Anadolu Zirvesi, bölgedeki üniversite öğrencilerini, yazılım ve mühendislik alanında gelişmek isteyen gençleri, sektör temsilcilerini ve teknoloji ekosistemini bir araya getirmeyi hedefleyen bir etkinliktir.
+## Teknik Altyapı ve Performans
 
-Bu web sitesi de etkinliğin dijital vitrini olarak tasarlanmıştır. Amaç yalnızca bilgi vermek değil; ziyaretçiye etkinliğin ölçeğini, enerjisini ve profesyonel yapısını ilk bakışta hissettirmektir.
+Platform, modern frontend mimarisinin en güncel araçları kullanılarak inşa edilmiştir:
+
+- **Çekirdek:** Next.js 16 ve React 19 ile optimize edilmiş render süreçleri.
+- **Animasyon Sistemi:** GSAP (GreenSock Animation Platform) ve ScrollTrigger entegrasyonu ile akıcı, katmanlı geçişler.
+- **3D Deneyimi:** Three.js, React Three Fiber ve Drei kütüphaneleri kullanılarak oluşturulan etkileşimli WebGL sahneleri.
+- **Parçacık Efektleri:** TSParticles ile derinlik hissi veren dinamik arkaplanlar.
+- **Stil Yönetimi:** Vanilla CSS ile kurgulanan, düşük maliyetli ve yüksek esneklik sunan CSS değişkenleri tabanlı sistem.
+- **Performans Optimizasyonu:** GPU hızlandırmalı animasyonlar, akıllı resim yükleme stratejileri ve düşük "Main Thread" yükü.
+
+## Mimari Yapı: Feature-Sliced Design (FSD)
+
+Proje, ölçeklenebilirliği ve sürdürülebilirliği en üst düzeye çıkarmak için Feature-Sliced Design metodolojisi prensiplerine göre yapılandırılmıştır:
+
+- **App:** Global sağlayıcılar, tema yapılandırmaları ve temel düzenler.
+- **Pages:** Sayfa seviyesindeki bileşenler ve veri akış yönetimi.
+- **Widgets:** Bağımsız işlevselliğe sahip büyük UI blokları (Hero Section, Speakers List, Sponsors Gallery).
+- **Features:** Kullanıcı etkileşimlerini yöneten aksiyon odaklı bileşenler.
+- **Shared:** Tekrar kullanılabilir UI bileşenleri, yardımcı fonksiyonlar ve özel React hookları.
 
 ## Öne Çıkan Özellikler
 
-- Modern ve koyu tema odaklı görsel tasarım
-- Açık tema desteği
-- Tam responsive mobil uyumluluk
-- Mobilde özel tasarlanmış bölüm düzenleri
-- Konuşmacılar için mobilde kompakt liste ve detay görüntüleme
-- Paydaş ve sponsor alanları
-- Google Maps destekli iletişim bölümü
-- Mail ve yol tarifi aksiyonları
-- Scroll reveal animasyonları
-- Akıcı footer marquee yazısı
-- React bileşen mimarisiyle parçalı ve yönetilebilir yapı
+- **Editorial Layout:** Tipografik hiyerarşinin ön planda olduğu, içerik odaklı modern tasarım.
+- **Smooth Interaction:** GSAP tabanlı yumuşak kaydırma ve nesne odaklı giriş animasyonları.
+- **3D Backgrounds:** Sayfa genelinde derinlik algısını güçlendiren WebGL tabanlı görsel öğeler.
+- **Responsive Excellence:** Tüm cihazlarda (Desktop, Tablet, Mobile) kusursuz çalışan, her ekran boyutuna özel optimize edilmiş görsel düzen.
+- **Preloader Deneyimi:** Sitenin yüklenme sürecini bir deneyime dönüştüren özel tasarlanmış giriş sekansı.
 
-## Sayfa Bölümleri
+## Başlangıç
 
-Site tek sayfa yapısında ilerler ve aşağıdaki ana bölümlerden oluşur:
+### Gereksinimler
 
-- Hero / giriş alanı
-- Doğu Anadolu Zirvesi nedir?
-- Neden katılmalısınız?
-- Hakkımızda
-- Konuşmacılar
-- Paydaşlar
-- Sponsorlar
-- Bize ulaşın
-- Footer
+- Node.js 20 veya üzeri
+- pnpm (Önerilen) veya npm/yarn paket yöneticisi
 
-## Mobil Deneyim
+### Kurulum
 
-Bu projede mobil görünüm ayrıca ele alınmıştır. Desktop tasarımı doğrudan küçültülmek yerine, her bölümün mobil kullanıcı davranışına göre yeniden düzenlenmesi hedeflenmiştir.
+Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyin:
 
-Mobil tarafta yapılan temel yaklaşımlar:
+1. Depoyu klonlayın:
+   ```bash
+   git clone [repository-url]
+   ```
 
-- Kartların ekranı gereksiz doldurmaması
-- İçeriklerin tek elle kolay okunabilmesi
-- Buton ve bağlantıların dokunmatik kullanıma uygun olması
-- Konuşmacı bilgilerinin kompakt gösterilip gerektiğinde detaylı açılması
-- İletişim bölümünde haritadan çok aksiyonların öne çıkarılması
-- Footer alanının küçük ekranlarda daha kısa ve okunabilir hale getirilmesi
+2. Frontend dizinine gidin:
+   ```bash
+   cd frontend
+   ```
 
-## Kullanılan Teknolojiler
+3. Bağımlılıkları yükleyin:
+   ```bash
+   pnpm install
+   ```
 
-- React 19
-- Vite
-- JavaScript
-- Vanilla CSS
-- React Icons
-- Context API
-- Google Maps Embed
-- ESLint
+4. Geliştirme sunucusunu başlatın:
+   ```bash
+   pnpm run dev
+   ```
 
-## Proje Yapısı
+## Üretim ve Dağıtım
 
-```text
-DAZ/
-├── frontend/
-│   ├── public/
-│   │   ├── HSD-Beyaz-Logo.png
-│   │   ├── kg.png
-│   │   ├── int.png
-│   │   └── inönü.png
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Navbar.jsx
-│   │   │   ├── Hero.jsx
-│   │   │   ├── WhatIs.jsx
-│   │   │   ├── WhyAttend.jsx
-│   │   │   ├── About.jsx
-│   │   │   ├── Speakers.jsx
-│   │   │   ├── Partners.jsx
-│   │   │   ├── Sponsors.jsx
-│   │   │   ├── Contact.jsx
-│   │   │   └── Footer.jsx
-│   │   ├── contexts/
-│   │   │   └── ThemeContext.jsx
-│   │   ├── App.jsx
-│   │   ├── App.css
-│   │   └── index.css
-│   ├── package.json
-│   └── vite.config.js
-├── .gitignore
-└── README.md
-```
-
-## Bileşenler
-
-`Navbar`
-Sayfa içi navigasyonu, mobil menüyü ve tema değiştirme butonunu içerir.
-
-`Hero`
-Etkinliğin ilk izlenimini veren giriş bölümüdür.
-
-`WhatIs`
-Doğu Anadolu Zirvesi'nin ne olduğunu anlatan içerik bölümüdür.
-
-`WhyAttend`
-Zirveye katılmanın sağlayacağı kazanımları gösterir.
-
-`About`
-Etkinliğin misyon, vizyon, hedef kitle ve etki alanını anlatır.
-
-`Speakers`
-Konuşmacı kartlarını listeler. Mobilde kartlar kompakt gösterilir ve detaylar ayrıca okunabilir.
-
-`Partners`
-Paydaş logolarını kayan bir yapı içinde sunar.
-
-`Sponsors`
-Sponsorları seviyelerine göre listeler.
-
-`Contact`
-Adres, e-posta, yol tarifi ve harita bilgisini içerir.
-
-`Footer`
-Site bağlantılarını, sosyal medya ikonlarını ve marka yazısını içerir.
-
-## Tasarım Yaklaşımı
-
-Tasarımda HSD kimliğine uygun koyu, teknolojik ve etkinlik odaklı bir atmosfer hedeflenmiştir. Kırmızı vurgu rengi, siyah zemin ve cam efektli yüzeyler kullanılarak güçlü bir görsel dil oluşturulmuştur.
-
-Mobil tarafta ise yalnızca görünüm değil, kullanım davranışı da dikkate alınmıştır. Bu yüzden bazı bölümler desktop ile birebir aynı görünmez; mobilde daha kısa, daha hızlı taranabilir ve dokunmaya daha uygun hale getirilmiştir.
-
-## Komutlar
-
-Frontend dizininde kullanılabilecek temel komutlar:
+Üretim ortamı için optimize edilmiş bir çıktı almak için:
 
 ```bash
-npm run dev
+pnpm build
 ```
 
-Geliştirme sunucusunu başlatır.
+Ardından sonucu önizlemek için:
 
 ```bash
-npm run build
+pnpm start
 ```
 
-Projeyi production için derler.
+## Kalite Standartları
 
-```bash
-npm run preview
-```
-
-Build alınmış projeyi yerelde önizler.
-
-```bash
-npm run lint
-```
-
-Kod kalitesini ESLint ile kontrol eder.
-
-## Projeyi Çalıştırma
-
-Bu projeyi kendi bilgisayarınızda çalıştırmak için Node.js kurulu olmalıdır. Önerilen sürüm Node.js 20 veya üzeridir.
-
-1. Repoyu klonlayın:
-
-```bash
-git clone https://github.com/kullanici-adi/repo-adi.git
-```
-
-2. Proje klasörüne girin:
-
-```bash
-cd DAZ
-```
-
-3. Frontend klasörüne geçin:
-
-```bash
-cd frontend
-```
-
-4. Bağımlılıkları yükleyin:
-
-```bash
-npm install
-```
-
-5. Geliştirme sunucusunu başlatın:
-
-```bash
-npm run dev
-```
-
-6. Tarayıcıda açın:
-
-```text
-http://localhost:5173
-```
-
-Production build almak için:
-
-```bash
-npm run build
-```
-
-Build sonucunu yerelde kontrol etmek için:
-
-```bash
-npm run preview
-```
+Kod kalitesini ve tasarım bütünlüğünü korumak için ESLint ve katı mimari kurallar uygulanmaktadır. Her yeni bileşen, projenin lüks estetiğine ve teknik performans hedeflerine uygun olarak geliştirilmelidir.
