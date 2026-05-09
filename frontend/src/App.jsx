@@ -1,51 +1,66 @@
 import { useState, useEffect, useCallback } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import WhatIs from './components/WhatIs';
-import WhyAttend from './components/WhyAttend';
-import About from './components/About';
-import Speakers from './components/Speakers';
-import Partners from './components/Partners';
-import Sponsors from './components/Sponsors';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import LazySection from './components/LazySection';
 import ScrollIndicator from './components/ScrollIndicator';
 import { useLandingAnimations } from './hooks/useLandingAnimations';
 import { Preloader } from './widgets/Preloader';
 
+// Hero/Navbar fold üstünde — eager.
+// Alt sectionlar IO tetikleyince dinamik import edilir, chunk ayrı.
+const loadWhatIs = () => import('./components/WhatIs');
+const loadWhyAttend = () => import('./components/WhyAttend');
+const loadAbout = () => import('./components/About');
+const loadSpeakers = () => import('./components/Speakers');
+const loadPartners = () => import('./components/Partners');
+const loadSponsors = () => import('./components/Sponsors');
+const loadContact = () => import('./components/Contact');
+const loadFooter = () => import('./components/Footer');
+
 function useScrollReveal() {
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            io.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' },
     );
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    const observeAll = () => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach((el) => io.observe(el));
+    };
+    observeAll();
 
-    return () => observer.disconnect();
+    // Lazy mount edilen yeni .reveal elemanlarını yakala.
+    const mo = new MutationObserver(() => observeAll());
+    mo.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      io.disconnect();
+      mo.disconnect();
+    };
   }, []);
 }
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
-  
+
   const handlePreloaderComplete = useCallback(() => {
     setIsLoading(false);
   }, []);
-  
+
   useScrollReveal();
   useLandingAnimations(isLoading);
 
   return (
     <>
       <Preloader onComplete={handlePreloaderComplete} />
-      
+
       {/* Fixed global background */}
       <div className="global-bg" aria-hidden="true">
         <div className="global-bg-gradient" />
@@ -56,14 +71,14 @@ export default function App() {
 
       <Navbar />
       <Hero />
-      <WhatIs />
-      <WhyAttend />
-      <About />
-      <Speakers />
-      <Partners />
-      <Sponsors />
-      <Contact />
-      <Footer />
+      <LazySection load={loadWhatIs} fallbackMinHeight="90vh" />
+      <LazySection load={loadWhyAttend} fallbackMinHeight="90vh" />
+      <LazySection load={loadAbout} fallbackMinHeight="120vh" />
+      <LazySection load={loadSpeakers} fallbackMinHeight="100vh" />
+      <LazySection load={loadPartners} fallbackMinHeight="60vh" />
+      <LazySection load={loadSponsors} fallbackMinHeight="80vh" />
+      <LazySection load={loadContact} fallbackMinHeight="60vh" />
+      <LazySection load={loadFooter} fallbackMinHeight="40vh" />
     </>
   );
 }
