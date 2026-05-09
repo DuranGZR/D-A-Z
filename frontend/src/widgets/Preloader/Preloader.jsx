@@ -66,7 +66,7 @@ const Preloader = ({ onComplete }) => {
       <div className="preloader-content">
         <div className="preloader-text-wrapper" ref={logoRef}>
           <div className="preloader-title">
-            <span className="preloader-title-line top">DOĞU ANADOLU</span>
+            <span className="preloader-title-line top">TEKNOLOJİ VE YENİLİK</span>
             <span className="preloader-title-line bottom">ZİRVESİ</span>
           </div>
         </div>

@@ -34,12 +34,12 @@
 
 .preloader-title-line.top {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
-  letter-spacing: 0.9em;
+  font-size: 1.4rem;
+  letter-spacing: 0.5em;
   color: #888;
   font-weight: 500;
   margin-bottom: 1.2rem;
-  margin-right: -0.9em; /* Offset for letter spacing */
+  margin-right: -0.5em; /* Offset for letter spacing */
 }
 
 .preloader-title-line.bottom {
@@ -91,11 +91,11 @@
     font-size: 5rem;
   }
   .preloader-title-line.bottom {
-    font-size: 2.8rem;
+    font-size: 3.2rem;
   }
   .preloader-title-line.top {
-    font-size: 0.7rem;
-    letter-spacing: 0.5em;
-    margin-right: -0.5em;
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    margin-right: -0.2em;
   }
 }
