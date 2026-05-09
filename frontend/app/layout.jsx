@@ -4,7 +4,7 @@ export const metadata = {
   title: 'Doğu Anadolu Zirvesi',
   description: 'Teknoloji ve Yenilik Zirvesi resmi web sitesi',
   icons: {
-    icon: '/HSD-Beyaz-Logo.png',
+    icon: '/favicon-peak.png',
   },
 };
 
