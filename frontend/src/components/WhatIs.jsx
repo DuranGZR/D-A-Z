@@ -52,7 +52,8 @@ export default function WhatIs() {
 
     const mm = gsap.matchMedia();
 
-    mm.add('(min-width: 769px)', () => {
+    mm.add('all', (context) => {
+      const { isMobile } = context.conditions || {};
       const paragraphs = paragraphsRef.current.filter(Boolean);
       const dots = progressRef.current
         ? Array.from(progressRef.current.querySelectorAll('.whatis-dot'))
@@ -60,7 +61,7 @@ export default function WhatIs() {
 
       // Initial states
       gsap.set(headerRef.current, {
-        yPercent: 60,
+        yPercent: isMobile ? 30 : 60,
         opacity: 0,
         filter: 'blur(28px)',
       });
@@ -76,7 +77,7 @@ export default function WhatIs() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: '+=4200',
+          end: isMobile ? '+=2800' : '+=4200', // Shorter scroll on mobile for better UX
           scrub: 1,
           pin: pinRef.current,
           pinSpacing: true,
@@ -158,9 +159,15 @@ export default function WhatIs() {
         }
       });
 
+      // Force a refresh after a short delay to ensure layout is ready
+      setTimeout(() => ScrollTrigger.refresh(), 500);
+
       return () => {
-        // matchMedia cleanup handled by gsap
+        // cleanup
       };
+    }, {
+      isMobile: '(max-width: 768px)',
+      isDesktop: '(min-width: 769px)'
     });
 
     return () => mm.revert();
@@ -201,39 +208,7 @@ export default function WhatIs() {
         </div>
       </div>
 
-      {/* Mobile accordion fallback (hidden on desktop via CSS) */}
-      <div className="whatis-mobile container">
-        <h2 className="section-title">
-          Teknoloji ve Yenilik Zirvesi <span>Nedir?</span>
-        </h2>
-        <p className="section-subtitle">
-          Bölgenin en büyük teknoloji ve girişimcilik buluşması
-        </p>
-        <div className="whatis-cards">
-          {cards.map((card, i) => (
-            <div
-              className={`whatis-card ${activeIndex === i ? 'active' : ''}`}
-              key={i}
-            >
-              <div
-                className="whatis-card-header"
-                onClick={() => toggleAccordion(i)}
-              >
-                <div className="whatis-card-icon">{card.icon}</div>
-                <h3 className="whatis-card-title">{card.title}</h3>
-                <div className="whatis-card-toggle">
-                  <PiCaretDownBold />
-                </div>
-              </div>
-              <div className="whatis-card-content">
-                <div className="whatis-card-content-inner">
-                  <p>{card.text}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+
     </section>
   );
 }
