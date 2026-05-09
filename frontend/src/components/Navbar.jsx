@@ -87,7 +87,7 @@ export default function Navbar() {
       </button>
 
       {/* Full-screen Menu - Absolute/Fixed friendly */}
-      <div className={`navbar-links${menuOpen ? ' open' : ''}`}>
+      <div className={`navbar-mobile-links${menuOpen ? ' open' : ''}`}>
         {navLinks.map((link) => (
           <a 
             key={link.href} 

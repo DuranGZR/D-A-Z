@@ -34,7 +34,7 @@ export function useLandingAnimations(isLoading) {
         delay: 0.48,
         ease: 'power2.out',
       });
-      gsap.from('.navbar-links > a', {
+      gsap.from('.navbar-desktop-links > a', {
         opacity: 0,
         y: -10,
         duration: 0.5,
