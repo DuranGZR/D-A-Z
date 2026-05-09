@@ -346,6 +346,12 @@
 @media (max-width: 768px) {
   .pt-section {
     padding: 80px 0 72px;
+    /*
+     * Mobilde sticky/parallax çok erken devreye girdiği için alt kartlar görünmeden
+     * bir sonraki section üstüne biniyordu. Negatif top ile sticky başlangıcını
+     * section'ın ilerisine taşıyoruz (parallax daha geç başlar).
+     */
+    top: -52vh;
   }
 
   .pt-heading-inner {
