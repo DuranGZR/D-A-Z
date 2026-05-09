@@ -12,7 +12,7 @@ if (typeof window !== 'undefined') {
 const tiers = [
   {
     label: 'Ana Sponsor',
-    tag: 'GOLD',
+    tag: 'ALTIN',
     tier: 'gold',
     items: [
       { name: 'Yeşilyurt Belediyesi', image: '/logo/yesilyurtbelediyesi.png' },
@@ -22,8 +22,8 @@ const tiers = [
     ],
   },
   {
-    label: 'Platinium Sponsor',
-    tag: 'PLATINUM',
+    label: 'Platin Sponsor',
+    tag: 'PLATİN',
     tier: 'silver',
     items: [
       { name: 'English Time', image: '/logo/englishtime.jpg' },
@@ -45,7 +45,7 @@ const tiers = [
   },
   {
     label: 'Gümüş Sponsor',
-    tag: 'SILVER',
+    tag: 'GÜMÜŞ',
     tier: 'bronze',
     items: [
       { name: 'Kahve Durağı', image: '/logo/kahveduragi.jpeg' },

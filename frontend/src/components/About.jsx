@@ -413,7 +413,7 @@ export default function About() {
         <header className="np-masthead">
           <span className="np-masthead-rule np-masthead-rule--top" />
           <h2 className="np-masthead-title" ref={mastheadRef}>
-            Doğu Anadolu Times
+            Doğu Anadolu Gazetesi
           </h2>
           <span className="np-masthead-rule np-masthead-rule--bottom" />
           <div className="np-tagline">
