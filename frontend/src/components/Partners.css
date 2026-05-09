@@ -3,7 +3,9 @@
    ===================================================== */
 
 .pt-section {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 0; /* Keep it below Sponsors */
   padding: 120px 0 100px;
   overflow: hidden;
   /* Hafif açık kahve / latte zemin */

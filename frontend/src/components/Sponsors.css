@@ -9,6 +9,7 @@
   overflow: hidden;
   background: var(--color-black, #0a0a0a);
   color: var(--color-white, #fff);
+  z-index: 10; /* Ensures it slides over the sticky Partners section */
 }
 
 /* Kırmızı radial glow arka plan */
