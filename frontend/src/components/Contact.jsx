@@ -71,17 +71,17 @@ export default function Contact() {
               <span className="contact-block-label">ÜNİVERSİTE HESAPLARI</span>
             </div>
             <div className="contact-social-links">
-              <a href="#" className="social-link" target="_blank" rel="noreferrer">
+              <a href="https://www.instagram.com/hsdinonu/" className="social-link" target="_blank" rel="noreferrer">
                 <span>İnönü Üniv. Instagram</span>
                 <PiArrowUpRightLight />
               </a>
               <div className="contact-premium-line-subtle"></div>
-              <a href="#" className="social-link" target="_blank" rel="noreferrer">
+              <a href="https://www.instagram.com/hsdmtu/" className="social-link" target="_blank" rel="noreferrer">
                 <span>Turgut Özal Üniv. Instagram</span>
                 <PiArrowUpRightLight />
               </a>
               <div className="contact-premium-line-subtle"></div>
-              <a href="#" className="social-link" target="_blank" rel="noreferrer">
+              <a href="https://www.instagram.com/hsdfirat/" className="social-link" target="_blank" rel="noreferrer">
                 <span>Fırat Üniv. Instagram</span>
                 <PiArrowUpRightLight />
               </a>

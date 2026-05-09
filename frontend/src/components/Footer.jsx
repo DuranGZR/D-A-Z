@@ -12,15 +12,15 @@ const quickLinks = [
 
 const socialLinks = [
   {
-    href: 'https://www.instagram.com/hsdinonu?igsh=MWtqMGRwOWFvZjU2dw==',
+    href: 'https://www.instagram.com/hsdinonu/',
     label: 'HSD İnönü',
   },
   {
-    href: 'https://www.instagram.com/hsdmtu?igsh=OHM1YWcwZ3dvdmhu',
+    href: 'https://www.instagram.com/hsdmtu/',
     label: 'HSD MTÜ',
   },
   {
-    href: 'https://www.instagram.com/hsdfirat?igsh=MmYzZTI1MGtzaTdn',
+    href: 'https://www.instagram.com/hsdfirat/',
     label: 'HSD Fırat',
   },
 ];
@@ -93,7 +93,7 @@ export default function Footer() {
           <span className="copyright">© 2026. Tüm hakları saklıdır.</span>
           <div className="footer-dev">
             <span className="footer-dev-dot" />
-            <span>HUAWEI STUDENT DEVELOPERS</span>
+            <span>HUAWEI STUDENT DEVELOPERS - MZ</span>
           </div>
         </div>
       </div>
