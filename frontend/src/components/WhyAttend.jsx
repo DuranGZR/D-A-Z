@@ -56,7 +56,8 @@ export default function WhyAttend() {
   const [active, setActive] = useState(0);
   const sectionRef = useRef(null);
   const veilRef    = useRef(null);
-  const cubeRef    = useRef(null);
+  const perspRef   = useRef(null);   // scaled for zoom (2-D, uniform)
+  const cubeRef    = useRef(null);   // rotated (3-D)
   const tiltRef    = useRef(null);
   const headerRef  = useRef(null);
 
@@ -64,20 +65,25 @@ export default function WhyAttend() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
+    const persp  = perspRef.current;
     const cube   = cubeRef.current;
     const veil   = veilRef.current;
     const header = headerRef.current;
 
-    // set starting states (GSAP controls these)
-    gsap.set(cube,   { rotateX: -86, rotateY: 0, scale: 0.16 });
-    gsap.set(header, { opacity: 0, y: 28 });
+    if (!persp || !cube || !veil || !header) return;
+
+    // Zoom: scale the 2-D persp wrapper → uniform grow, no 3-D distortion
+    // Rotate: rotateX/rotateY on the cube element
+    gsap.set(persp,  { scale: 0.14, transformOrigin: '50% 50%' });
+    gsap.set(cube,   { rotateX: -88, rotateY: 0 });
+    gsap.set(header, { opacity: 0, y: 24 });
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end:   'bottom bottom',   // section is min-height: calc(100vh + 5200px)
+          end:   'bottom bottom',
           scrub: 1.6,
           invalidateOnRefresh: true,
           onUpdate(self) {
@@ -89,13 +95,13 @@ export default function WhyAttend() {
         },
       });
 
-      // ── Phase 1 : zoom in from above ──
-      tl.to(veil, { opacity: 0, duration: 1.0, ease: 'power3.in' }, 0)
-        .to(cube,  { scale: 1.0, duration: 2.8, ease: 'power2.inOut' }, 0);
+      // ── Phase 1 : zoom in from above (2-D scale → uniform) ──
+      tl.to(veil,  { opacity: 0, duration: 1.0, ease: 'power3.in' }, 0)
+        .to(persp, { scale: 1.0, duration: 2.8, ease: 'power2.inOut' }, 0);
 
-      // ── Phase 2 : tilt to side-view ──
+      // ── Phase 2 : tilt cube to side-view ──
       tl.to(cube,   { rotateX: -14, duration: 1.8, ease: 'power3.inOut' }, 2.8)
-        .to(header, { opacity: 1, y: 0, duration: 1.1, ease: 'power2.out' }, 3.5);
+        .to(header, { opacity: 1, y: 0, duration: 1.1, ease: 'power2.out' }, 3.4);
 
       // ── Phase 3 : rotate through 4 content faces ──
       tl.to(cube, { rotateY: -270, duration: 5.4, ease: 'none' }, 4.6);
@@ -150,7 +156,7 @@ export default function WhyAttend() {
       {/* Sticky viewport stage */}
       <div className="why-scene">
 
-        {/* Header (appears during tilt phase) */}
+        {/* Header — absolute, centered at top-third, appears during tilt phase */}
         <header className="why-header" ref={headerRef}>
           <h2 className="section-title why-title">
             Neden <span>Katılmalısınız?</span>
@@ -160,9 +166,9 @@ export default function WhyAttend() {
           </p>
         </header>
 
-        {/* 3-D Cube */}
+        {/* 3-D Cube — centered in full scene */}
         <div className="why-cube-wrap">
-        <div className="why-persp" style={{ '--accent': activeAccent }}>
+        <div className="why-persp" ref={perspRef} style={{ '--accent': activeAccent }}>
           {/* Mouse-parallax wrapper */}
           <div className="why-tilt" ref={tiltRef}>
             {/* GSAP drives rotateX / rotateY / scale on this element */}

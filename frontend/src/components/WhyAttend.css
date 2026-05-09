@@ -37,26 +37,28 @@
   height: 100vh;
   height: 100dvh;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 56px 24px 0;
+  justify-content: center;
   overflow: hidden;
   z-index: 10;
-  box-sizing: border-box;
   /* Subtle ambient glow */
   background: radial-gradient(
-    circle at 50% 58%,
+    circle at 50% 55%,
     rgba(220, 38, 38, 0.07) 0%,
     transparent 65%
   );
 }
 
-/* ── Header ── */
+/* ── Header — absolute, anchored to top-centre ── */
 .why-header {
+  position: absolute;
+  top: 86px;
+  left: 0;
+  right: 0;
   text-align: center;
   will-change: transform, opacity;
-  flex-shrink: 0;
+  pointer-events: none;
+  z-index: 5;
 }
 
 .why-title {
@@ -125,9 +127,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow:
-    inset 0 0 60px rgba(0,0,0,0.25),
-    0 0 80px rgba(220,38,38,0.55);
+  box-shadow: inset 0 -38px 70px rgba(0,0,0,0.18);
 }
 
 /* Shine highlight on top */
@@ -161,14 +161,14 @@
   object-fit: contain;
   position: relative;
   z-index: 2;
-  filter: brightness(0) invert(1) drop-shadow(0 4px 16px rgba(0,0,0,0.3));
+  filter: brightness(0) invert(1);
   user-select: none;
 }
 
 /* ── BOTTOM FACE ── */
 .why-face-bottom {
   background: linear-gradient(135deg, #111 0%, #1a0000 100%);
-  box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+  box-shadow: inset 0 18px 48px rgba(0,0,0,0.42);
 }
 
 /* ── SIDE CONTENT FACES ── */
@@ -188,8 +188,8 @@
   border: 1px solid rgba(255,255,255,0.08);
   border-top: 1px solid rgba(255,255,255,0.16);
   box-shadow:
-    0 30px 80px rgba(0,0,0,0.6),
-    inset 0 1px 0 rgba(255,255,255,0.1);
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    inset 0 -28px 60px rgba(0,0,0,0.18);
 }
 
 [data-theme="light"] .why-face-s0,
@@ -199,7 +199,9 @@
   background: linear-gradient(155deg, rgba(255,255,255,0.96) 0%, rgba(248,250,252,0.9) 100%);
   border: 1px solid rgba(15,23,42,0.07);
   border-top: 1px solid #fff;
-  box-shadow: 0 24px 60px rgba(15,23,42,0.12), inset 0 1px 0 #fff;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -24px 52px rgba(15,23,42,0.035);
 }
 
 /* ── Inner glow (accent colour) ── */
@@ -296,7 +298,6 @@
   color: var(--accent, var(--color-red));
   display: inline-flex;
   line-height: 1;
-  filter: drop-shadow(0 8px 18px color-mix(in oklab, var(--accent, #dc2626) 40%, transparent));
 }
 
 .wf-title {
@@ -309,7 +310,8 @@
 }
 
 [data-theme="light"] .wf-title {
-  color: var(--color-dark-gray);
+  color: #0f172a;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .wf-desc {
@@ -341,16 +343,16 @@
 .wf-c-bl { bottom: 14px; left: 14px;  border-bottom-width: 2px; border-left-width: 2px;  border-bottom-left-radius: 7px; }
 .wf-c-br { bottom: 14px; right: 14px; border-bottom-width: 2px; border-right-width: 2px; border-bottom-right-radius: 7px; }
 
-/* ── Cube area (centers the persp + glow) ── */
+/* ── Cube area — fills scene, centers cube ── */
 .why-cube-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 1 1 auto;
   width: 100%;
+  height: 100%;
   position: relative;
-  min-height: 0;
+  transform: translateY(42px);
 }
 
 /* ── Floor reflection glow ── */
