@@ -13,6 +13,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const onScroll = () => {
@@ -21,6 +22,33 @@ export default function Navbar() {
     };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Scroll Spy Logic
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-40% 0px -40% 0px',
+      threshold: 0
+    };
+
+    const handleIntersect = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+    const sectionIds = navLinks.map(link => link.href.substring(1));
+    
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -61,7 +89,12 @@ export default function Navbar() {
         <div className={`navbar-pill${scrolled ? ' is-active' : ''}`}>
           <div className={`navbar-links${menuOpen ? ' open' : ''}`}>
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href} onClick={handleLinkClick}>
+              <a 
+                key={link.href} 
+                href={link.href} 
+                onClick={handleLinkClick}
+                className={activeSection === link.href.substring(1) ? 'active' : ''}
+              >
                 {link.label}
               </a>
             ))}
