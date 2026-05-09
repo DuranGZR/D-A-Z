@@ -76,23 +76,38 @@ export default function Navbar() {
 
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
-      <div className="navbar-track">
-        <button
-          className={`navbar-toggle${menuOpen ? ' open' : ''}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menü"
-          type="button"
-        >
-          <span /><span /><span />
-        </button>
+      {/* Toggle button - Always fixed-friendly outside trackers */}
+      <button
+        className={`navbar-toggle${menuOpen ? ' open' : ''}`}
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Menü"
+        type="button"
+      >
+        <span /><span /><span />
+      </button>
 
+      {/* Full-screen Menu - Absolute/Fixed friendly */}
+      <div className={`navbar-links${menuOpen ? ' open' : ''}`}>
+        {navLinks.map((link) => (
+          <a 
+            key={link.href} 
+            href={link.href} 
+            onClick={handleLinkClick}
+            className={activeSection === link.href.substring(1) ? 'active' : ''}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <div className="navbar-track">
         <div className={`navbar-pill${scrolled ? ' is-active' : ''}`}>
-          <div className={`navbar-links${menuOpen ? ' open' : ''}`}>
+          {/* Desktop links placeholder - visible only on desktop via CSS */}
+          <div className="navbar-desktop-links">
             {navLinks.map((link) => (
               <a 
                 key={link.href} 
                 href={link.href} 
-                onClick={handleLinkClick}
                 className={activeSection === link.href.substring(1) ? 'active' : ''}
               >
                 {link.label}
@@ -101,6 +116,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+
       {menuOpen && (
         <button
           type="button"
