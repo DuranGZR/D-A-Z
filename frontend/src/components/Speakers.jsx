@@ -81,23 +81,25 @@ function SpeakerScene({ progressRef, lensTargetRef }) {
     // smooth easeInOutCubic
     t = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
-    const xA = seg % 2 === 1 ? +PHOTO_X_NORM : -PHOTO_X_NORM;
-    const xB = (seg + 1) % 2 === 1 ? +PHOTO_X_NORM : -PHOTO_X_NORM;
+    const isMobile = window.innerWidth <= 768;
+    const xA = isMobile ? 0 : (seg % 2 === 1 ? +PHOTO_X_NORM : -PHOTO_X_NORM);
+    const xB = isMobile ? 0 : ((seg + 1) % 2 === 1 ? +PHOTO_X_NORM : -PHOTO_X_NORM);
     lensTargetRef.current.x = xA + (xB - xA) * t;
-    lensTargetRef.current.y = 0;
+    lensTargetRef.current.y = isMobile ? -0.2 : 0;
   });
 
   return (
     <group ref={groupRef}>
       {speakers.map((sp, i) => {
+        const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
         const reverse = i % 2 === 1;
         const x = reverse ? +PHOTO_X_NORM : -PHOTO_X_NORM;
         return (
           <Image
             key={sp.name}
             url={sp.image}
-            position={[x * (viewport.width / 2), -i * viewport.height, 0]}
-            scale={[viewport.width * 0.36, viewport.height * 0.78]}
+            position={[isMobile ? 0 : x * (viewport.width / 2), -i * viewport.height, 0]}
+            scale={isMobile ? [viewport.width * 0.85, viewport.height * 0.6] : [viewport.width * 0.36, viewport.height * 0.78]}
           />
         );
       })}
@@ -273,6 +275,9 @@ export default function Speakers() {
               key={sp.name}
               className={`sp-row ${reverse ? 'sp-row--reverse' : ''}`}
             >
+              <div className="sp-row__mobile-image">
+                <img src={sp.image} alt={sp.name} decoding="async" />
+              </div>
               <div
                 className="sp-row__info"
                 ref={(el) => (rowRefs.current[i] = el)}
