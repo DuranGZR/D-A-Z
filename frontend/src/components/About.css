@@ -55,6 +55,9 @@
 [data-theme='light'] .about.np-paper .np-grain {
   opacity: 0.35;
   mix-blend-mode: multiply;
+  /* fade grain in from top so the section entry matches the WhyAttend outro overlay */
+  mask-image: linear-gradient(180deg, transparent 0px, black 140px);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0px, black 140px);
 }
 
 /* radial spotlight */
@@ -71,7 +74,7 @@
 
 [data-theme='light'] .about.np-paper::before {
   background:
-    radial-gradient(80% 60% at 50% 0%, rgba(185, 28, 28, 0.05), transparent 70%),
+    radial-gradient(80% 60% at 50% 20%, rgba(185, 28, 28, 0.05), transparent 70%),
     linear-gradient(180deg, var(--np-paper) 0%, var(--np-paper-2) 100%);
 }
 
@@ -310,31 +313,22 @@
 .np-columns {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
+  column-gap: 28px;
   margin: 36px 0 60px;
-  position: relative;
-}
-
-.np-columns::before,
-.np-columns::after {
-  content: '';
-  position: absolute;
-  top: 6px;
-  bottom: 6px;
-  width: 1px;
-  background: var(--np-rule);
-}
-
-.np-columns::before {
-  left: calc(33.333% - 14px);
-}
-
-.np-columns::after {
-  left: calc(66.666% - 14px);
 }
 
 .np-column {
   position: relative;
+}
+
+.np-column + .np-column::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: -14px;
+  width: 1px;
+  background: var(--np-rule);
 }
 
 .np-column-text {
@@ -736,11 +730,14 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .np-columns::before {
-    left: calc(50% - 14px);
+  .np-column:nth-child(3) {
+    grid-column: 1 / -1;
+    margin-top: 18px;
+    padding-top: 22px;
+    border-top: 1px solid var(--np-rule);
   }
 
-  .np-columns::after {
+  .np-column:nth-child(3)::before {
     display: none;
   }
 
@@ -820,9 +817,17 @@
     margin: 26px 0 44px;
   }
 
-  .np-columns::before,
-  .np-columns::after {
+  .np-column + .np-column {
+    padding-top: 22px;
+    border-top: 1px solid var(--np-rule);
+  }
+
+  .np-column + .np-column::before {
     display: none;
+  }
+
+  .np-column:nth-child(3) {
+    margin-top: 0;
   }
 
   .np-column-text {

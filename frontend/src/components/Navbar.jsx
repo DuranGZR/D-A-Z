@@ -15,10 +15,34 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 50);
+      setMenuOpen(false);
+    };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+
+    const closeMenu = () => setMenuOpen(false);
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') closeMenu();
+    };
+
+    window.addEventListener('scroll', closeMenu, { passive: true });
+    window.addEventListener('resize', closeMenu);
+    window.addEventListener('hashchange', closeMenu);
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      window.removeEventListener('scroll', closeMenu);
+      window.removeEventListener('resize', closeMenu);
+      window.removeEventListener('hashchange', closeMenu);
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [menuOpen]);
 
   const handleLinkClick = () => setMenuOpen(false);
 

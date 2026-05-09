@@ -6,7 +6,7 @@
 .why-attend {
   position: relative;
   /* 100vh sticky stage + 5200px of scroll space */
-  min-height: calc(100vh + 5200px);
+  min-height: calc(100vh + 7000px);
   background: transparent;
 }
 
@@ -165,10 +165,29 @@
   user-select: none;
 }
 
-/* ── BOTTOM FACE ── */
+/* ── BOTTOM FACE — matches About section bg for seamless transition ── */
 .why-face-bottom {
-  background: linear-gradient(135deg, #111 0%, #1a0000 100%);
-  box-shadow: inset 0 18px 48px rgba(0,0,0,0.42);
+  background: linear-gradient(180deg, #f5f1e6 0%, #ece6d4 100%);
+  box-shadow: inset 0 18px 60px rgba(0,0,0,0.06);
+}
+
+[data-theme="dark"] .why-face-bottom {
+  background: linear-gradient(180deg, #0d0c0a 0%, #15130f 100%);
+  box-shadow: inset 0 18px 60px rgba(0,0,0,0.6);
+}
+
+/* ── OUTRO OVERLAY — full-screen cover matching About bg ── */
+.why-outro {
+  position: absolute;
+  inset: 0;
+  background: #f5f1e6;
+  opacity: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .why-outro {
+  background: #0d0c0a;
 }
 
 /* ── SIDE CONTENT FACES ── */

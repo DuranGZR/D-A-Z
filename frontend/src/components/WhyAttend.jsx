@@ -45,12 +45,15 @@ const reasons = [
   },
 ];
 
-// Timeline design (total = 10 units → 5200px scroll)
-// Phase 1  0.0 → 2.8  : zoom in from above (veil fades, cube scales 0.14→1)
-// Phase 2  2.8 → 4.6  : tilt from top-view to side-view (rotateX -74→-12)
-// Phase 3  4.6 → 10.0 : rotateY 0 → -270 (4 content faces)
-const PHASE2_START = 0.28;
-const PHASE3_START = 0.46;
+// Timeline design (total = 14 units → 7000px scroll, ~500px per unit)
+// Phase 1  0.0 →  2.8  : zoom in from above (veil fades, cube scales 0.14→1)
+// Phase 2  2.8 →  4.6  : tilt from top-view to side-view (rotateX -88→-14)
+// Phase 3  4.6 → 10.0  : rotateY 0 → -270 (4 content faces)
+// Phase 4 10.0 → 11.5  : tilt to bottom view (rotateX -14 → 90), header out
+// Phase 5 11.5 → 14.0  : zoom into bottom face + outro overlay fills screen
+const TL_TOTAL   = 14;
+const P3_START   = 4.6  / TL_TOTAL; // ~0.329
+const P3_END     = 10.0 / TL_TOTAL; // ~0.714
 
 export default function WhyAttend() {
   const [active, setActive] = useState(0);
@@ -60,6 +63,7 @@ export default function WhyAttend() {
   const cubeRef    = useRef(null);   // rotated (3-D)
   const tiltRef    = useRef(null);
   const headerRef  = useRef(null);
+  const outroRef   = useRef(null);   // full-screen outro overlay
 
   /* ─── Master scroll-driven timeline ─── */
   useEffect(() => {
@@ -69,14 +73,14 @@ export default function WhyAttend() {
     const cube   = cubeRef.current;
     const veil   = veilRef.current;
     const header = headerRef.current;
+    const outro  = outroRef.current;
 
-    if (!persp || !cube || !veil || !header) return;
+    if (!persp || !cube || !veil || !header || !outro) return;
 
-    // Zoom: scale the 2-D persp wrapper → uniform grow, no 3-D distortion
-    // Rotate: rotateX/rotateY on the cube element
     gsap.set(persp,  { scale: 0.14, transformOrigin: '50% 50%' });
     gsap.set(cube,   { rotateX: -88, rotateY: 0 });
     gsap.set(header, { opacity: 0, y: 24 });
+    gsap.set(outro,  { opacity: 0 });
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -87,8 +91,9 @@ export default function WhyAttend() {
           scrub: 1.6,
           invalidateOnRefresh: true,
           onUpdate(self) {
-            if (self.progress < PHASE3_START) { setActive(0); return; }
-            const p   = (self.progress - PHASE3_START) / (1 - PHASE3_START);
+            if (self.progress < P3_START) { setActive(0); return; }
+            if (self.progress >= P3_END)  { setActive(reasons.length - 1); return; }
+            const p   = (self.progress - P3_START) / (P3_END - P3_START);
             const idx = Math.min(reasons.length - 1, Math.floor(p * reasons.length));
             setActive(prev => (prev === idx ? prev : idx));
           },
@@ -105,6 +110,17 @@ export default function WhyAttend() {
 
       // ── Phase 3 : rotate through 4 content faces ──
       tl.to(cube, { rotateY: -270, duration: 5.4, ease: 'none' }, 4.6);
+
+      // ── Phase 4 : tilt + continue Y so bottom face faces camera ──
+      // rotateY -270 → -360 (= 0°, same direction as phase 3), rotateX -14 → 90
+      // Only at rotateY=0/360 + rotateX=90 does bottom face perfectly face camera.
+      tl.to(cube,   { rotateX: 90, rotateY: -360, duration: 1.5, ease: 'power2.inOut' }, 10)
+        .to(header, { opacity: 0, y: -16, duration: 0.7, ease: 'power2.in' }, 10);
+
+      // ── Phase 5 : zoom into bottom face + outro overlay fills screen ──
+      // scale drives 2-D zoom (uniform), outro overlay fades in with About's bg color
+      tl.to(persp, { scale: 16, duration: 2.5, ease: 'power3.in' }, 11.5)
+        .to(outro,  { opacity: 1, duration: 1.0, ease: 'power2.in'  }, 12.8);
     }, sectionRef);
 
     return () => ctx.revert();
@@ -234,6 +250,9 @@ export default function WhyAttend() {
             }}
           />
         </div>
+
+        {/* Outro overlay — fades in with About section's background color */}
+        <div className="why-outro" ref={outroRef} aria-hidden="true" />
       </div>
     </section>
   );

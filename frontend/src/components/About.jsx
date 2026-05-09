@@ -19,9 +19,9 @@ if (typeof window !== 'undefined') {
 }
 
 const stats = [
-  { value: 10, suffix: '+', label: 'Konuşmacı' },
-  { value: 500, suffix: '+', label: 'Katılımcı' },
-  { value: 8, suffix: '+', label: 'Oturum' },
+  { value: 4, suffix: '+', label: 'Konuşmacı' },
+  { value: 430, suffix: '+', label: 'Katılımcı' },
+  { value: 4, suffix: '+', label: 'Oturum' },
   { value: 1, suffix: '', label: 'Gün' },
 ];
 
@@ -401,7 +401,7 @@ export default function About() {
           <span className="np-folio-dot">•</span>
           <span className="np-folio-item">SAYI N° 01</span>
           <span className="np-folio-dot">•</span>
-          <span className="np-folio-item">9 MAYIS 2026 · CMT</span>
+          <span className="np-folio-item">11 MAYIS 2026 · PZT</span>
           <span className="np-folio-dot">•</span>
           <span className="np-folio-item">MALATYA</span>
           <span className="np-folio-dot">•</span>
@@ -449,7 +449,7 @@ export default function About() {
             <span className="np-lead-byline-sep">/</span>
             <span>İnönü, Turgut Özal &amp; Fırat Toplulukları</span>
             <span className="np-lead-byline-sep">/</span>
-            <span>Malatya, 9 Mayıs 2026</span>
+            <span>Malatya, 11 Mayıs 2026</span>
           </p>
         </header>
 

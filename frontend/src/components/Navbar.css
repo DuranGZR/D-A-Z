@@ -164,6 +164,14 @@
     z-index: 4;
   }
 
+  .navbar-pill {
+    display: block;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
   .navbar-pill.is-active {
     background: transparent;
     backdrop-filter: none;
@@ -174,9 +182,10 @@
   }
 
   .navbar-links {
+    display: none;
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
     width: 70%;
     max-width: 300px;
     height: 100vh;
@@ -186,14 +195,19 @@
     flex-direction: column;
     justify-content: center;
     gap: 22px;
-    transition: right var(--transition-base);
+    transform: translate3d(110%, 0, 0);
+    transition: transform var(--transition-base);
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 3;
     flex-wrap: nowrap;
     padding: 24px;
+    will-change: transform;
   }
 
-  .navbar-links.open { right: 0; }
+  .navbar-links.open {
+    display: flex;
+    transform: translate3d(0, 0, 0);
+  }
 
   .navbar-links a,
   .navbar-pill.is-active .navbar-links a {
