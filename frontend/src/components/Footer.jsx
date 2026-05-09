@@ -31,8 +31,8 @@ export default function Footer() {
       <div className="container">
         <div className="footer-mega-brand" aria-hidden="true">
           <div className="footer-mega-brand-track">
-            <span>TEKNOLOJİ VE YENİLİK ZİRVESİ</span>
-            <span>TEKNOLOJİ VE YENİLİK ZİRVESİ</span>
+            <span>TEKNOLOJi VE YENiLiK ZiRVESi</span>
+            <span>TEKNOLOJi VE YENiLiK ZiRVESi</span>
           </div>
         </div>
 

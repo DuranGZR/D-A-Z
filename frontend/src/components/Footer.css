@@ -28,7 +28,7 @@
   line-height: 0.8;
   letter-spacing: 0;
   color: var(--color-white);
-  opacity: 0.03;
+  opacity: 0.35; /* Increased further for maximum visibility */
   overflow: hidden;
   user-select: none;
   pointer-events: none;
@@ -54,7 +54,7 @@
 
 [data-theme="light"] .footer-mega-brand {
   color: var(--color-dark-gray);
-  opacity: 0.04;
+  opacity: 0.45; /* Increased significantly for light theme visibility */
 }
 
 /* Main Content Layer */
@@ -259,7 +259,7 @@
     line-height: 0.95;
     letter-spacing: 0;
     margin-bottom: 24px;
-    opacity: 0.045;
+    opacity: 0.3; /* Increased for maximum clarity on mobile */
   }
 
   .footer-mega-brand-track {
