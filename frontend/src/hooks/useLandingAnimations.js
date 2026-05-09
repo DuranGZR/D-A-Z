@@ -2,8 +2,10 @@ import { useEffect } from 'react';
 import gsap from 'gsap';
 import { animate, stagger } from 'animejs';
 
-export function useLandingAnimations() {
+export function useLandingAnimations(isLoading) {
   useEffect(() => {
+    if (isLoading) return;
+
     const animeInstances = [];
 
     const ctx = gsap.context(() => {
@@ -73,5 +75,5 @@ export function useLandingAnimations() {
         }
       });
     };
-  }, []);
+  }, [isLoading]);
 }

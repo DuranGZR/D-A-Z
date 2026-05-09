@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import WhatIs from './components/WhatIs';
@@ -11,6 +11,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollIndicator from './components/ScrollIndicator';
 import { useLandingAnimations } from './hooks/useLandingAnimations';
+import { Preloader } from './widgets/Preloader';
 
 function useScrollReveal() {
   useEffect(() => {
@@ -32,11 +33,15 @@ function useScrollReveal() {
 }
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  
   useScrollReveal();
-  useLandingAnimations();
+  useLandingAnimations(isLoading);
 
   return (
     <>
+      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+      
       {/* Fixed global background */}
       <div className="global-bg" aria-hidden="true">
         <div className="global-bg-gradient" />
