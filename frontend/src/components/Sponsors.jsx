@@ -63,7 +63,8 @@ const tiers = [
   },
 ];
 
-export default function Sponsors() {
+export default function Sponsors() { 
+  
   const sectionRef = useRef(null);
   const overlayRef = useRef(null);
   const expandedRef = useRef(null);
