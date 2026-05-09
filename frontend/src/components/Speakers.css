@@ -1,624 +1,363 @@
-/* ========================================
-   Speakers Section - Glass & Light
-   ======================================== */
+/* =========================================================
+   Speakers — WebGL Fluid Glass + alternating editorial rows
+   ========================================================= */
 
-.speakers {
-  padding: var(--section-padding);
-  background: transparent;
+.speakers-fluid {
   position: relative;
-  overflow: hidden;
+  padding: 120px 0 0;
+  overflow: clip;
+  isolation: isolate;
 }
 
-.speakers-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Base Card structure - Boxless */
-.speaker-card {
-  position: relative;
-  aspect-ratio: 3 / 4;
-  border-radius: var(--radius-lg);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end; 
-  transition: transform var(--transition-base);
-}
-
-.speaker-card:hover {
-  transform: translateY(-8px);
-}
-
-/* Image Wrapper (The Portrait Area) */
-.speaker-image-wrapper {
+.speakers-fluid::before {
+  content: '';
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-lg);
-  background: transparent;
-  overflow: hidden;
-  transition: all var(--transition-base);
+  background:
+    radial-gradient(ellipse 800px 600px at 20% 30%, rgba(220, 38, 38, 0.07), transparent 70%),
+    radial-gradient(ellipse 800px 600px at 80% 70%, rgba(220, 38, 38, 0.05), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
 }
 
-.speaker-real-image {
-  position: absolute;
-  inset: 0;
+[data-theme="light"] .speakers-fluid::before {
+  background:
+    radial-gradient(ellipse 800px 600px at 20% 30%, rgba(220, 38, 38, 0.04), transparent 70%),
+    radial-gradient(ellipse 800px 600px at 80% 70%, rgba(220, 38, 38, 0.03), transparent 70%);
+}
+
+/* ─── Intro header ─── */
+.speakers__intro {
+  text-align: center;
+  margin: 0 auto 40px;
+  max-width: 880px;
+  position: relative;
   z-index: 3;
 }
 
-/* Simulated Image Background for placeholders */
-.speaker-image-bg {
+.speakers__eyebrow {
+  display: inline-block;
+  font-family: var(--font-countdown);
+  font-size: 0.74rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-red);
+  margin-bottom: 22px;
+  font-weight: 500;
+}
+
+.speakers__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 24px;
+  color: var(--color-white);
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.speakers__title-dot {
+  color: var(--color-red);
+  margin-left: 4px;
+}
+
+.speakers__sub {
+  font-family: var(--font-hero-serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  color: var(--color-white-muted);
+  line-height: 1.55;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+
+.speakers__rule {
+  width: 64px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-red), transparent);
+  margin: 0 auto;
+}
+
+/* =========================================================
+   PINNED WEBGL STAGE — 100vh sticky canvas
+   The trick: margin-bottom: -100vh removes the canvas from
+   block flow so the text rows can stack on top of it.
+   ========================================================= */
+.speakers-fluid__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  z-index: 1;
+  margin-bottom: -100vh;
+  margin-bottom: -100dvh;
+  pointer-events: none;
+}
+
+.speakers-fluid__canvas {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(40,40,45,1) 0%, rgba(20,20,22,1) 100%);
-  transition: all var(--transition-base);
-  z-index: 1;
-}
-
-[data-theme="light"] .speaker-image-bg {
-  background: radial-gradient(circle at center, #f8fafc 0%, #e2e8f0 100%);
-}
-
-.speaker-image-placeholder {
-  font-size: 8rem;
-  color: var(--color-white-muted);
-  opacity: 0.1;
-  z-index: 2;
-  transition: all var(--transition-base);
-}
-
-[data-theme="light"] .speaker-image-placeholder {
-  color: var(--color-dark-gray);
-  opacity: 0.05;
-}
-
-/* Hover Aura/Glow on the Image */
-.speaker-card:hover .speaker-image-bg {
-  background: radial-gradient(circle at center, rgba(220,38,38,0.15) 0%, rgba(20,20,22,1) 100%);
-  transform: scale(1.05); 
-}
-
-[data-theme="light"] .speaker-card:hover .speaker-image-bg {
-  background: radial-gradient(circle at center, rgba(220,38,38,0.08) 0%, #e2e8f0 100%);
-}
-
-.speaker-card:hover .speaker-real-image {
-  transform: scale(1.05);
-}
-
-.speaker-card:hover .speaker-image-placeholder {
-  color: var(--color-red);
-  opacity: 0.3;
-  transform: scale(1.05);
-}
-
-/* Floating Glass Panel */
-.speaker-glass-panel {
-  position: relative;
-  z-index: 10;
-  margin: 0 12px -20px 12px; 
-  height: 148px;
-  overflow: hidden;
-  background: rgba(15, 15, 18, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-md);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  transform: translateZ(0);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-[data-theme="light"] .speaker-glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(15, 23, 42, 0.05);
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-
-.speaker-glass-content {
-  padding: 18px;
+  width: 100%;
   height: 100%;
+}
+
+.speakers-fluid__canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* =========================================================
+   TEXT ROWS — natural block flow stacked over the canvas
+   ========================================================= */
+.speakers-fluid__rows {
+  position: relative;
+  z-index: 2;
+}
+
+.sp-row {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  height: 100dvh;
+  padding: 0 clamp(24px, 6vw, 96px);
+  position: relative;
+}
+
+.sp-row--reverse {
+  justify-content: flex-start;
+}
+
+.sp-row:not(.sp-row--reverse) {
+  justify-content: flex-end;
+}
+
+.sp-row__info {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  gap: 18px;
+  width: clamp(320px, 38vw, 520px);
+  /* The text sits on the OPPOSITE side of the photo: photo is on left → text on right, etc */
 }
 
-/* Glass Panel Hover Dynamics */
-.speaker-card:hover .speaker-glass-panel,
-.speaker-card:focus-within .speaker-glass-panel {
-  height: auto;
-  min-height: 148px;
-  overflow: visible;
-  transform: translateY(-8px);
-  background: rgba(15, 15, 18, 0.75);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-[data-theme="light"] .speaker-card:hover .speaker-glass-panel,
-[data-theme="light"] .speaker-card:focus-within .speaker-glass-panel {
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1);
-  border-color: rgba(15, 23, 42, 0.1);
-}
-
-.speaker-card:hover .speaker-glass-content,
-.speaker-card:focus-within .speaker-glass-content {
-  height: auto;
-  overflow: visible;
-}
-
-/* Typography Inside Panel */
-.speaker-name {
-  font-size: clamp(1.05rem, 1.45vw, 1.28rem);
-  font-weight: 700;
-  color: var(--color-white);
-  letter-spacing: -0.02em;
-  margin-bottom: 4px;
-  line-height: 1.2;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-[data-theme="light"] .speaker-name {
-  color: #0f172a;
-}
-
-.speaker-title {
-  font-size: 0.72rem;
-  font-weight: 300;
-  color: var(--color-gray-text);
-  margin-bottom: 16px;
+.sp-row__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-countdown);
+  font-size: 0.74rem;
+  letter-spacing: 0.42em;
+  color: var(--color-red);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1.35;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  min-height: 1.95rem;
-  overflow: hidden;
-}
-
-.speaker-card:hover .speaker-name,
-.speaker-card:hover .speaker-title,
-.speaker-card:focus-within .speaker-name,
-.speaker-card:focus-within .speaker-title {
-  display: block;
-  min-height: 0;
-  overflow: visible;
-}
-
-/* Tag Pills */
-.speaker-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 10px;
-  max-height: 30px;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.speaker-card:hover .speaker-tags,
-.speaker-card:focus-within .speaker-tags {
-  max-height: none;
-  overflow: visible;
-}
-
-.speaker-tag {
-  padding: 4px 8px;
-  font-size: 0.68rem;
   font-weight: 500;
-  color: var(--color-white-muted);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-full);
-  transition: all var(--transition-fast);
 }
 
-[data-theme="light"] .speaker-tag {
-  color: rgba(15, 23, 42, 0.6);
-  background: rgba(15, 23, 42, 0.03);
-  border-color: rgba(15, 23, 42, 0.05);
+.sp-row__kicker-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-red);
+  box-shadow: 0 0 12px var(--color-red-glow);
 }
 
-.speaker-card:hover .speaker-tag,
-.speaker-card:focus-within .speaker-tag {
+.sp-row__name {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4.4vw, 4rem);
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  line-height: 1;
   color: var(--color-white);
-  border-color: rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.1);
+  margin: 4px 0 0;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
 }
 
-[data-theme="light"] .speaker-card:hover .speaker-tag,
-[data-theme="light"] .speaker-card:focus-within .speaker-tag {
+[data-theme="light"] .sp-row__name {
   color: #0f172a;
-  border-color: rgba(15, 23, 42, 0.18);
-  background: rgba(15, 23, 42, 0.06);
+  text-shadow: 0 4px 24px rgba(255, 255, 255, 0.55);
 }
 
-/* Fluid Bio Reveal */
-.speaker-bio-wrapper {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.speaker-card:hover .speaker-bio-wrapper,
-.speaker-card:focus-within .speaker-bio-wrapper {
-  grid-template-rows: 1fr;
-}
-
-.speaker-bio {
-  overflow: hidden;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.78rem;
-  line-height: 1.5;
+.sp-row__role {
+  font-family: var(--font-hero-serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  color: var(--color-white-muted);
+  line-height: 1.4;
   font-weight: 400;
-  opacity: 0;
-  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  padding-top: 0; 
+  margin-top: 2px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
-[data-theme="light"] .speaker-bio {
-  color: rgba(15, 23, 42, 0.7);
+[data-theme="light"] .sp-row__role {
+  color: #1e293b;
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.6);
 }
 
-.speaker-card:hover .speaker-bio,
-.speaker-card:focus-within .speaker-bio {
-  opacity: 1;
-  padding-top: 16px; 
+.sp-row__role-sep {
+  color: var(--color-red);
+  font-style: normal;
+  margin: 0 4px;
 }
 
-.speakers-coming {
-  text-align: center;
+.sp-row__company {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 500;
+  color: var(--color-white);
+  letter-spacing: 0.005em;
+}
+
+.sp-row__divider {
+  width: 56px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-red), transparent);
+  margin: 8px 0 4px;
+}
+
+.sp-row__bio {
   color: var(--color-gray-text);
   font-size: 1rem;
-  padding: 60px 0 0;
+  line-height: 1.72;
+  font-weight: 400;
+  max-width: 520px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] .sp-row__bio {
+  color: #334155;
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.5);
+}
+
+.sp-row__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.sp-row__tag {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(15, 15, 18, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-countdown);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all var(--transition-base);
+}
+
+.sp-row__tag:hover {
+  background: rgba(220, 38, 38, 0.18);
+  border-color: rgba(220, 38, 38, 0.45);
+  color: var(--color-white);
+}
+
+[data-theme="light"] .sp-row__tag {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(15, 23, 42, 0.12);
+  color: rgba(15, 23, 42, 0.78);
+}
+
+[data-theme="light"] .sp-row__tag:hover {
+  background: rgba(220, 38, 38, 0.1);
+  border-color: rgba(220, 38, 38, 0.4);
+  color: #0f172a;
+}
+
+/* ─── End mark ─── */
+.speakers__endmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 80px 24px 100px;
+  color: var(--color-gray-text);
+  position: relative;
+  z-index: 3;
+}
+
+.speakers__endmark-rule {
+  width: 90px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+[data-theme="light"] .speakers__endmark-rule {
+  background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.35), transparent);
+}
+
+.speakers__endmark-text {
+  font-family: var(--font-hero-serif);
   font-style: italic;
-  font-weight: 300;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: var(--color-white-muted);
 }
 
-.speaker-mobile-modal {
-  display: none;
-}
-
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 @media (max-width: 1024px) {
-  .speakers-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 48px 32px;
+  .speakers-fluid {
+    padding: 100px 0 0;
+  }
+  .sp-row {
+    padding: 0 32px;
+  }
+  .sp-row__info {
+    width: clamp(280px, 50vw, 460px);
   }
 }
 
-@media (max-width: 640px) {
-  .speakers {
-    padding: 76px 0 64px;
-  }
-
-  .speakers-grid {
-    grid-template-columns: 1fr;
-    max-width: 520px;
-    gap: 12px;
-  }
-
-  .speaker-card {
-    aspect-ratio: auto;
-    display: grid;
-    grid-template-columns: 104px minmax(0, 1fr);
-    align-items: start;
-    gap: 10px;
-    padding: 10px;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: var(--shadow-sm);
-    transform: none !important;
-    cursor: pointer;
-  }
-
-  [data-theme="light"] .speaker-card {
-    background: rgba(255, 255, 255, 0.88);
-    border-color: rgba(15, 23, 42, 0.08);
-  }
-
-  .speaker-card:hover {
-    transform: none;
-  }
-
-  .speaker-image-wrapper {
-    position: relative;
-    inset: auto;
-    width: 104px;
-    height: 128px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  [data-theme="light"] .speaker-image-wrapper {
-    border-color: rgba(15, 23, 42, 0.08);
-  }
-
-  .speaker-card:hover .speaker-image-bg,
-  [data-theme="light"] .speaker-card:hover .speaker-image-bg {
-    transform: none;
-  }
-
-  .speaker-card:hover .speaker-real-image,
-  .speaker-card:hover .speaker-image-placeholder,
-  .speaker-card:hover .speaker-glass-panel,
-  .speaker-card:hover .speaker-tag {
-    transform: none;
-    filter: none;
-  }
-
-  .speaker-glass-panel {
-    height: auto;
-    overflow: visible;
-    margin: 0;
-    border-radius: 12px;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-
-  [data-theme="light"] .speaker-glass-panel {
-    background: transparent;
-  }
-
-  .speaker-glass-content {
-    padding: 0;
-    height: auto;
-    overflow: visible;
-  }
-
-  .speaker-name {
-    font-size: 1.28rem;
-    margin-bottom: 4px;
-    display: block;
-    overflow: visible;
-  }
-
-  .speaker-title {
-    font-size: 0.73rem;
-    letter-spacing: 0.04em;
-    margin-bottom: 8px;
-    line-height: 1.35;
-    display: block;
-    min-height: 0;
-    overflow: visible;
-  }
-
-  .speaker-tags {
-    max-height: none;
-    overflow: visible;
-  }
-
-  .speaker-tag {
-    padding: 3px 8px;
-    font-size: 0.66rem;
-  }
-
-  .speaker-bio-wrapper,
-  .speaker-card:hover .speaker-bio-wrapper {
-    grid-template-rows: 1fr;
-  }
-
-  .speaker-bio,
-  .speaker-card:hover .speaker-bio {
-    opacity: 1;
-    padding-top: 0;
-    font-size: 0.84rem;
-    line-height: 1.45;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .speakers-coming {
-    padding-top: 28px;
-    font-size: 0.92rem;
-  }
-
-  .speaker-mobile-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 1200;
-    display: flex;
+@media (max-width: 700px) {
+  .sp-row {
+    padding: 0 22px;
     align-items: center;
     justify-content: center;
-    padding: 18px 14px;
+    padding-bottom: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
-
-  .speaker-mobile-modal-backdrop {
-    position: absolute;
-    inset: 0;
-    border: none;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-  }
-
-  .speaker-mobile-modal-card {
-    position: relative;
-    width: min(560px, calc(100vw - 28px));
-    max-height: min(82vh, 700px);
-    overflow-y: auto;
-    border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: linear-gradient(165deg, rgba(18, 18, 22, 0.96) 0%, rgba(10, 10, 12, 0.98) 100%);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
-    padding: 14px;
-    z-index: 1;
-  }
-
-  [data-theme="light"] .speaker-mobile-modal-card {
-    border-color: rgba(15, 23, 42, 0.1);
-    background: linear-gradient(165deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.98) 100%);
-    box-shadow: 0 16px 34px rgba(15, 23, 42, 0.12);
-  }
-
-  .speaker-mobile-close {
-    position: sticky;
-    top: 0;
-    margin-left: auto;
-    display: flex;
-    align-items: center;
+  .sp-row,
+  .sp-row--reverse {
     justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--color-white);
-    font-size: 1.05rem;
-    z-index: 2;
   }
-
-  [data-theme="light"] .speaker-mobile-close {
-    border-color: rgba(15, 23, 42, 0.15);
-    background: rgba(15, 23, 42, 0.05);
-    color: var(--color-dark-gray);
-  }
-
-  .speaker-mobile-top {
-    display: grid;
-    grid-template-columns: 120px minmax(0, 1fr);
-    gap: 12px;
-    align-items: start;
-    margin-top: 6px;
-    margin-bottom: 12px;
-  }
-
-  .speaker-mobile-image {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 120px;
-    height: 150px;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  [data-theme="light"] .speaker-mobile-image {
-    border-color: rgba(15, 23, 42, 0.1);
-  }
-
-  .speaker-mobile-real-image {
-    position: absolute;
-    inset: 0;
-    z-index: 3;
+  .sp-row__info {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 520px;
+    text-align: center;
+    align-items: center;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.45) 50%, rgba(0, 0, 0, 0.7) 100%);
+    border-radius: 18px;
+    padding: 22px 18px 24px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
-
-  .speaker-mobile-head .speaker-name {
-    font-size: 1.5rem;
-    margin-bottom: 6px;
+  [data-theme="light"] .sp-row__info {
+    background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0.92) 100%);
   }
-
-  .speaker-mobile-head .speaker-title {
-    margin-bottom: 0;
-    font-size: 0.8rem;
+  .sp-row__divider {
+    margin: 8px auto 4px;
   }
-
-  .speaker-mobile-modal .speaker-tags {
-    margin-bottom: 10px;
+  .sp-row__bio {
+    text-align: center;
   }
-
-  .speaker-mobile-fullbio {
-    color: rgba(255, 255, 255, 0.84);
-    font-size: 0.95rem;
-    line-height: 1.62;
-  }
-
-  [data-theme="light"] .speaker-mobile-fullbio {
-    color: rgba(15, 23, 42, 0.86);
+  .sp-row__tags {
+    justify-content: center;
   }
 }
 
-@media (max-width: 400px) {
-  .speakers-grid {
-    gap: 10px;
-  }
-
-  .speaker-card {
-    grid-template-columns: 92px minmax(0, 1fr);
-    padding: 8px;
-    gap: 8px;
-    border-radius: 14px;
-  }
-
-  .speaker-image-wrapper {
-    width: 92px;
-    height: 116px;
-  }
-
-  .speaker-name {
-    font-size: 1.18rem;
-  }
-
-  .speaker-title {
-    font-size: 0.68rem;
-    margin-bottom: 6px;
-  }
-
-  .speaker-tags {
-    gap: 5px;
-    margin-bottom: 8px;
-  }
-
-  .speaker-tag {
-    font-size: 0.62rem;
-    padding: 2px 7px;
-  }
-
-  .speaker-bio {
-    font-size: 0.8rem;
-    line-height: 1.4;
-    -webkit-line-clamp: 2;
-  }
-
-  .speaker-mobile-modal-card {
-    padding: 12px;
-    border-radius: 16px;
-    width: min(560px, calc(100vw - 20px));
-    max-height: min(84vh, 700px);
-  }
-
-  .speaker-mobile-top {
-    grid-template-columns: 102px minmax(0, 1fr);
-    gap: 10px;
-  }
-
-  .speaker-mobile-image {
-    width: 102px;
-    height: 132px;
-  }
-
-  .speaker-mobile-head .speaker-name {
-    font-size: 1.28rem;
-  }
-
-  .speaker-mobile-head .speaker-title {
-    font-size: 0.72rem;
-    line-height: 1.35;
-  }
-
-  .speaker-mobile-fullbio {
-    font-size: 0.88rem;
-    line-height: 1.56;
+@media (prefers-reduced-motion: reduce) {
+  .speakers-fluid__stage {
+    /* Keep static — the canvas still renders but no animations */
   }
 }
