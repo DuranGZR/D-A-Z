@@ -398,7 +398,34 @@
 
 @media (max-width: 768px) {
   .hero-foreground {
-    padding: max(60px, calc(env(safe-area-inset-top, 0px) + 44px)) 20px 0;
+    /* Kırmızı yazıları dağın kırmızısından kurtarıp mavi gökyüzüne hizala */
+    padding: 10vh 20px 0;
+  }
+  
+  /* Devasa ve eşit boşluk bırakma */
+  .hero-content--top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4vh; /* Bileşenler arası devasa eşit boşluk */
+  }
+
+  .hero-logo,
+  .hero-title,
+  .hero-date {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .hero-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px; /* Başlık içi satır aralığı */
+  }
+
+  .hero-title-accent {
+    margin-top: 0 !important;
   }
 
   .hero {
@@ -420,16 +447,23 @@
   }
 
   .hero-countdown-stage {
-    padding: 64vh 12px 0;
+    /* Pull the countdown up to fill the empty middle space */
+    padding: 58vh 12px 0;
   }
 
+  /* Sayacı 2x2 grid yapma */
   .countdown {
-    flex-wrap: nowrap;
-    gap: clamp(6px, 2vw, 14px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 16px;
+    justify-items: center;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
   }
 
   .countdown-number {
-    font-size: clamp(2.6rem, 14vw, 4.2rem);
+    font-size: clamp(3.2rem, 18vw, 4.8rem);
     text-shadow:
       0 2px 0 rgb(170, 11, 38),
       0 4px 0 rgb(122, 8, 27),
@@ -438,9 +472,9 @@
   }
 
   .countdown-label {
-    font-size: 0.58rem;
+    font-size: 0.65rem;
     letter-spacing: 0.24em;
     margin-top: 0;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 }
