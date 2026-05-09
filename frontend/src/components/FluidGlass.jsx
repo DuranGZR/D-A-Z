@@ -42,7 +42,10 @@ const ScrollLens = memo(function ScrollLens({
 }) {
   const ref = useRef(null);
   const { nodes } = useGLTF('/assets/3d/lens.glb');
-  const buffer = useFBO();
+  const buffer = useFBO({
+    samples: 0, // Background is just images, no need for heavy MSAA
+    depth: false, // No depth buffer needed for 2D images
+  });
   const { viewport: vp } = useThree();
   const [scene] = useState(() => new THREE.Scene());
 
@@ -94,6 +97,7 @@ const ScrollLens = memo(function ScrollLens({
           thickness={thickness}
           chromaticAberration={chromaticAberration}
           anisotropicBlur={anisotropicBlur}
+          resolution={1024} // Cap internal resolution
           {...extraMat}
         />
       </mesh>
@@ -130,8 +134,8 @@ const FluidGlassScroll = forwardRef(function FluidGlassScroll(
       className={className}
       style={style}
       camera={{ position: [0, 0, 20], fov: 15 }}
-      gl={{ alpha: true, antialias: true }}
-      dpr={[1, 2]}
+      gl={{ alpha: true, antialias: false, powerPreference: 'high-performance' }}
+      dpr={[1, 1.5]}
     >
       <ScrollLens targetRef={targetRef} lensProps={lensProps} bgColor={bgColor}>
         {children}

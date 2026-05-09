@@ -235,8 +235,9 @@ export default function Speakers() {
         <div className="speakers__rule" aria-hidden="true" />
       </div>
 
-      {/* Pinned WebGL stage */}
-      <div className="speakers-fluid__stage" ref={pinRef} aria-hidden="true">
+      <div className="speakers-fluid__wrapper" style={{ position: 'relative' }}>
+        {/* Pinned WebGL stage */}
+        <div className="speakers-fluid__stage" ref={pinRef} aria-hidden="true">
         <div className="speakers-fluid__canvas">
           <FluidGlass
             ref={fluidRef}
@@ -251,7 +252,7 @@ export default function Speakers() {
               anisotropicBlur: 0,
               roughness: 0,
               distortion: 0,
-              samples: 12,
+              samples: 4, // Reduced from 12 for massive performance gain since roughness is 0
             }}
           >
             <SpeakerScene
@@ -298,6 +299,7 @@ export default function Speakers() {
             </div>
           );
         })}
+      </div>
       </div>
 
       <div className="speakers__endmark" aria-hidden="true">
