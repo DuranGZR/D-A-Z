@@ -72,7 +72,27 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
-  const handleLinkClick = () => setMenuOpen(false);
+  const getSectionOffset = (sectionId) => {
+    if (sectionId === 'nedir') return window.innerHeight * 1.8;
+    if (sectionId === 'neden') return window.innerHeight * 1.55;
+    return 0;
+  };
+
+  const handleLinkClick = (event, href) => {
+    event.preventDefault();
+    setMenuOpen(false);
+
+    const sectionId = href.substring(1);
+    const target = document.getElementById(sectionId);
+    if (!target) return;
+
+    const baseTop = target.getBoundingClientRect().top + window.scrollY;
+    const top = Math.max(0, baseTop + getSectionOffset(sectionId));
+
+    window.scrollTo({ top, behavior: 'smooth' });
+    window.history.replaceState(null, '', href);
+    setActiveSection(sectionId);
+  };
 
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
@@ -92,7 +112,7 @@ export default function Navbar() {
           <a 
             key={link.href} 
             href={link.href} 
-            onClick={handleLinkClick}
+            onClick={(event) => handleLinkClick(event, link.href)}
             className={activeSection === link.href.substring(1) ? 'active' : ''}
           >
             {link.label}
@@ -108,6 +128,7 @@ export default function Navbar() {
               <a 
                 key={link.href} 
                 href={link.href} 
+                onClick={(event) => handleLinkClick(event, link.href)}
                 className={activeSection === link.href.substring(1) ? 'active' : ''}
               >
                 {link.label}
