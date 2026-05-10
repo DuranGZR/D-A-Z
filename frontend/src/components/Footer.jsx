@@ -93,7 +93,7 @@ export default function Footer() {
           <span className="copyright">© 2026. Tüm hakları saklıdır.</span>
           <div className="footer-dev">
             <span className="footer-dev-dot" />
-            <span>HUAWEI STUDENT DEVELOPERS - MZ</span>
+            <span>HUAWEI STUDENT DEVELOPERS</span>
           </div>
         </div>
       </div>
