@@ -82,14 +82,24 @@ export default function WhyAttend() {
     gsap.set(header, { opacity: 0, y: 24 });
     gsap.set(outro,  { opacity: 0 });
 
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
           end:   'bottom bottom',
-          scrub: 1.6,
+          scrub: isMobile ? 0.8 : 1.6,
           invalidateOnRefresh: true,
+          onLeaveBack() {
+            persp.style.willChange = 'auto';
+            cube.style.willChange  = 'auto';
+          },
+          onEnter() {
+            persp.style.willChange = 'transform';
+            cube.style.willChange  = 'transform';
+          },
           onUpdate(self) {
             if (self.progress < P3_START) { setActive(0); return; }
             if (self.progress >= P3_END)  { setActive(reasons.length - 1); return; }
@@ -118,9 +128,9 @@ export default function WhyAttend() {
         .to(header, { opacity: 0, y: -16, duration: 0.7, ease: 'power2.in' }, 10);
 
       // ── Phase 5 : zoom into bottom face + outro overlay fills screen ──
-      // scale drives 2-D zoom (uniform), outro overlay fades in with About's bg color
-      tl.to(persp, { scale: 16, duration: 2.5, ease: 'power3.in' }, 11.5)
-        .to(outro,  { opacity: 1, duration: 1.0, ease: 'power2.in'  }, 12.8);
+      // outro overlay fades early — scale only needs to ~fill viewport before outro covers
+      tl.to(persp, { scale: 7, duration: 2.5, ease: 'power3.in' }, 11.5)
+        .to(outro,  { opacity: 1, duration: 1.2, ease: 'power2.in'  }, 12.2);
     }, sectionRef);
 
     return () => ctx.revert();

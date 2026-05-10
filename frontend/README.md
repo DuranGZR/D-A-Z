@@ -6,7 +6,7 @@ Bu dizin, Doğu Anadolu Zirvesi (DAZ) projesinin React ve Vite kullanılarak gel
 
 Geliştirme ortamınızda projeyi ayağa kaldırmak için aşağıdaki komutları sırasıyla çalıştırın:
 
-1. Bağımlılıkları yükleyin:
+1. Bağımlılıkları yükleyin:  
    ```bash
    npm install
    ```

@@ -6,36 +6,19 @@ export default function ScrollIndicator() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    let nedirTop = 0;
-    let hakkimizdaTop = 0;
-    let cached = false;
     let raf = 0;
-
-    // Layout shift olmadıkça document-relative offset'ler sabit — bir kez ölç, cache.
-    // Lazy section'lar mount oldukça resize observer ile yenilenir.
-    const measure = () => {
-      const nedirEl = document.getElementById('nedir');
-      const hakkimizdaEl = document.getElementById('hakkimizda');
-      if (!nedirEl || !hakkimizdaEl) {
-        cached = false;
-        return false;
-      }
-      nedirTop = nedirEl.getBoundingClientRect().top + window.scrollY;
-      hakkimizdaTop = hakkimizdaEl.getBoundingClientRect().top + window.scrollY;
-      cached = true;
-      return true;
-    };
 
     const compute = () => {
       raf = 0;
-      if (!cached && !measure()) return;
-      const scrollY = window.scrollY;
+      const nedirEl = document.getElementById('nedir');
+      const hakkimizdaEl = document.getElementById('hakkimizda');
+      if (!nedirEl || !hakkimizdaEl) return;
       const wh = window.innerHeight;
-      const visible = scrollY >= (nedirTop - wh / 3) && scrollY < (hakkimizdaTop - wh / 2);
-      setIsVisible(visible);
+      const nedirTop = nedirEl.getBoundingClientRect().top;
+      const hakkimizdaTop = hakkimizdaEl.getBoundingClientRect().top;
+      setIsVisible(nedirTop <= wh / 3 && hakkimizdaTop > wh / 2);
     };
 
-    // rAF throttle — scroll event saniyede 60+ kez tetikleniyor, frame başına 1'e düşür.
     const handleScroll = () => {
       if (raf) return;
       raf = requestAnimationFrame(compute);
@@ -45,17 +28,18 @@ export default function ScrollIndicator() {
 
     // Section'lar lazy mount ediliyor → DOM'da ID ortaya çıkana kadar tekrar dene.
     let attempts = 0;
-    const tryMeasure = () => {
-      if (measure()) {
+    const tryCompute = () => {
+      const nedirEl = document.getElementById('nedir');
+      const hakkimizdaEl = document.getElementById('hakkimizda');
+      if (nedirEl && hakkimizdaEl) {
         compute();
       } else if (attempts++ < 20) {
-        setTimeout(tryMeasure, 250);
+        setTimeout(tryCompute, 250);
       }
     };
-    tryMeasure();
+    tryCompute();
 
-    // Lazy mount sonrası layout değişimleri için resize/orient.
-    const onResize = () => { cached = false; handleScroll(); };
+    const onResize = () => { handleScroll(); };
     window.addEventListener('resize', onResize, { passive: true });
 
     return () => {

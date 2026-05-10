@@ -8,6 +8,7 @@
   /* 100vh sticky stage + 5200px of scroll space */
   min-height: calc(100vh + 7000px);
   background: transparent;
+  contain: layout style;
 }
 
 /* ── White veil ── */
@@ -199,11 +200,11 @@
   flex-direction: column;
   background: linear-gradient(
     155deg,
-    rgba(255,255,255,0.06) 0%,
-    rgba(0,0,0,0.55) 100%
+    rgba(30,30,40,0.92) 0%,
+    rgba(10,10,15,0.97) 100%
   );
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.08);
   border-top: 1px solid rgba(255,255,255,0.16);
   box-shadow:
@@ -230,10 +231,10 @@
   border-radius: 18px;
   background: radial-gradient(
     circle at 28% 18%,
-    color-mix(in oklab, var(--accent) 38%, transparent) 0%,
+    var(--accent) 0%,
     transparent 55%
   );
-  opacity: 0.85;
+  opacity: 0.28;
   mix-blend-mode: screen;
   pointer-events: none;
 }
@@ -389,9 +390,10 @@
     rgba(220,38,38,0.08) 45%,
     transparent 75%
   );
-  filter: blur(20px);
+  filter: blur(8px);
   pointer-events: none;
   z-index: 0;
+  will-change: auto;
 }
 
 [data-theme="light"] .why-cube-wrap::after {
@@ -437,7 +439,18 @@
   .why-face-s2     { transform: rotateY(180deg)  translateZ(130px); }
   .why-face-s3     { transform: rotateY(-90deg)  translateZ(130px); }
 
-  .why-cube-wrap::after { width: 260px; }
+  /* Remove expensive effects on mobile GPU */
+  .why-face-s0,
+  .why-face-s1,
+  .why-face-s2,
+  .why-face-s3 {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: linear-gradient(155deg, rgba(20,20,28,0.97) 0%, rgba(8,8,12,0.99) 100%);
+  }
+
+  .wf-glow { display: none; }
+  .why-cube-wrap::after { width: 260px; filter: blur(4px); }
   .wf-icon { font-size: 2.2rem; }
   .why-scene { padding: 44px 16px 0; }
 }

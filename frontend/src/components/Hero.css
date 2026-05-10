@@ -465,6 +465,25 @@
   );
 }
 
+/* Hero → WhatIs geçiş fade (mobil) */
+.hero--mobile::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 28vh;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 30%,
+    rgba(255, 255, 255, 0.72) 60%,
+    rgb(255, 255, 255) 100%
+  );
+  z-index: 30;
+  pointer-events: none;
+}
+
 @media (max-width: 768px) {
   .hero-foreground {
     padding: 6vh 20px 0;
