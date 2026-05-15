@@ -1,12 +1,12 @@
-# Doğu Anadolu Zirvesi Web Sitesi
+# Teknoloji ve Yenilik Zirvesi Web Sitesi
 
-Doğu Anadolu Zirvesi web sitesi, HSD topluluğu tarafından düzenlenen teknoloji ve girişimcilik odaklı etkinlik için hazırlanmış modern, responsive ve tanıtım odaklı bir web arayüzüdür.
+Teknoloji ve Yenilik Zirvesi web sitesi, HSD topluluğu tarafından düzenlenen teknoloji ve girişimcilik odaklı etkinlik için hazırlanmış modern, responsive ve tanıtım odaklı bir web arayüzüdür.
 
 Site; etkinliğin amacını, katılımcılara sunduğu kazanımları, konuşmacıları, paydaşları, sponsorları ve iletişim bilgilerini tek sayfalık akıcı bir deneyim içinde sunar.
 
 ## Proje Amacı
 
-Doğu Anadolu Zirvesi, bölgedeki üniversite öğrencilerini, yazılım ve mühendislik alanında gelişmek isteyen gençleri, sektör temsilcilerini ve teknoloji ekosistemini bir araya getirmeyi hedefleyen bir etkinliktir.
+Teknoloji ve Yenilik Zirvesi, bölgedeki üniversite öğrencilerini, yazılım ve mühendislik alanında gelişmek isteyen gençleri, sektör temsilcilerini ve teknoloji ekosistemini bir araya getirmeyi hedefleyen bir etkinliktir.
 
 Bu web sitesi de etkinliğin dijital vitrini olarak tasarlanmıştır. Amaç yalnızca bilgi vermek değil; ziyaretçiye etkinliğin ölçeğini, enerjisini ve profesyonel yapısını ilk bakışta hissettirmektir.
 
@@ -29,7 +29,7 @@ Bu web sitesi de etkinliğin dijital vitrini olarak tasarlanmıştır. Amaç yal
 Site tek sayfa yapısında ilerler ve aşağıdaki ana bölümlerden oluşur:
 
 - Hero / giriş alanı
-- Doğu Anadolu Zirvesi nedir?
+- Teknoloji ve Yenilik Zirvesi nedir?
 - Neden katılmalısınız?
 - Hakkımızda
 - Konuşmacılar
